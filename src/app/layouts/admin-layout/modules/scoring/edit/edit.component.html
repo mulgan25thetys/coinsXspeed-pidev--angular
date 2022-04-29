@@ -1,0 +1,220 @@
+<!-- pageheader  -->
+<!-- ============================================================== -->
+<app-page-header [title]="pageTitle"></app-page-header>
+<!-- ============================================================== -->
+<!-- end pageheader  -->
+<!-- ============================================================== -->
+<div class="card">
+  <h5 class="card-header">
+    <span style="margin-right: 30px">Edit Form for Scoring</span>
+  </h5>
+
+  <div class="card-body">
+    <form #form="ngForm" novalidate> 
+      <div class="form-group row">
+        <label class="col-12 col-sm-3 col-form-label text-sm-right" for="title">Title</label>
+        <div class="col-12 col-sm-8 col-lg-6">
+        <input
+          type="text" disabled
+          class="form-control is-invalid"
+          [class.is-invalid]="title.invalid && title.touched"
+          [(ngModel)]="scoreform.title"
+          name="title"
+          #title="ngModel"
+          placeholder="Title..."
+          #rtitle
+          required
+          maxlength="100"
+        />
+        <!-- <small class="text-danger" [class.d-none]="title.valid || title.untouched">Title is required</small> -->
+        <div *ngIf="title.errors && (title.valid || title.touched)">
+          <small class="text-danger" *ngIf="title.errors.required">
+            Title is required</small
+          >
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-12 col-sm-3 col-form-label text-sm-right" for="description">Description</label>
+        <div class="col-12 col-sm-8 col-lg-6">
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="scoreform.description"
+          name="description"
+          #description="ngModel"
+          placeholder="Description..."
+        />
+        </div>
+      </div>
+
+      <!-- adding of questions -->
+      <!-- <div *ngIf="scoreform.questions?.length > 0">
+        <h3 class="section-title">
+          Questions ({{ scoreform.questions?.length }})
+        </h3>
+      </div> -->
+
+      <div
+        class="card-body border-top"
+        *ngFor="let question of scoreform.questions; let i = index"
+      >
+      <h3 class="section-title">
+        Question ({{ i+1 }})
+      </h3>
+        <div class="form-group row">
+          <label class="col-12 col-sm-3 col-form-label text-sm-right" for="description_q{{ i }}">Question ?</label>
+          <div class="col-12 col-sm-8 col-lg-6">
+          <input
+            type="text"
+            name="description_q{{ i }}"
+            [class.is-invalid]="descriptionq.invalid && descriptionq.touched"
+            [(ngModel)]="question.description"
+            #descriptionq="ngModel"
+            class="form-control"
+            placeholder="Question description..." required
+          />
+          <div *ngIf="descriptionq.errors && (descriptionq.valid || descriptionq.touched)">
+            <small class="text-danger" *ngIf="descriptionq.errors.required">
+              Question's description is required</small
+            >
+          </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-12 col-sm-3 col-form-label text-sm-right" for="points_q{{ i }}">Points</label>
+          <div class="col-12 col-sm-8 col-lg-6">
+          <input
+            type="number"
+            name="points_q{{ i }}"
+            [class.is-invalid]="pointsq.invalid && pointsq.touched"
+            [(ngModel)]="question.points"
+            #pointsq="ngModel"
+            class="form-control"
+            placeholder="Question points..." required 
+          />
+          <div *ngIf="pointsq.errors && (pointsq.valid || pointsq.touched)">
+            <small class="text-danger" *ngIf="pointsq.errors.required">
+              Please assyn points to the question</small
+            >
+          </div>
+          </div>
+        </div>
+
+        <!-- <h3 class="section-title" >
+          Propositions ({{ scoreform.questions[i].propositions.length }})
+        </h3>
+         -->
+
+        <div
+          class="card-body border-top"
+          *ngFor="
+            let proposition of scoreform.questions[i].propositions;
+            let j = index
+          "
+        >
+        <h3 class="section-title" >
+          Proposition ({{ j+1}})
+        </h3>
+          <div class="form-group row">
+            <label class="col-12 col-sm-3 col-form-label text-sm-right" for="description_p{{i}}{{ j }}">Description</label>
+            <div class="col-12 col-sm-8 col-lg-6">
+            <textarea
+              class="form-control"
+              name="description_p{{i}}{{ j }}"
+              [class.is-invalid]="descriptionp.invalid && descriptionp.touched"
+              #descriptionp="ngModel"
+              [(ngModel)]="proposition.description"
+              cols="30"
+              rows="5"
+              placeholder="Proposition description..." required
+            >
+            </textarea>
+            <div *ngIf="descriptionp.errors && (descriptionp.valid || descriptionp.touched)">
+              <small class="text-danger" *ngIf="descriptionp.errors.required">
+                Proposition's description is required</small
+              >
+            </div>
+            </div>
+          </div>
+          <div class="form-group row text-right">
+            <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
+              <button
+                class="btn btn-danger btn-sm mb-1"
+                (click)="removeProposition(i, j)"
+              >
+                Remove proposition
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row text-right">
+          <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
+            <button class="btn btn-success btn-sm mb-2" (click)="addProposition(i)">
+              <i class="fas fa-plus"></i> Proposition
+            </button>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-12 col-sm-3 col-form-label text-sm-right" for="s_description{{i}}">Answer</label>
+            <div class="col-12 col-sm-8 col-lg-6">
+          <select 
+            #s_description="ngModel"
+            name="s_description{{i}}"
+            [class.is-invalid]="s_description.invalid && s_description.touched "
+            id="s_description"
+            [(ngModel)]="question.answer.description"
+            class="form-control" required
+          >
+            <option
+              *ngFor="let answer of question.propositions"
+              [value]="answer.description"
+            >
+              {{ answer.description }}
+            </option>
+          </select>
+          <div *ngIf="s_description.errors && (s_description.valid || s_description.touched)">
+            <small class="text-danger" *ngIf="s_description.errors.required">
+              Please give answer to the question</small
+            >
+          </div>
+        </div>
+        </div>
+
+        <div class="form-group row text-right">
+          <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
+            <button class="btn btn-danger btn-sm" (click)="removeQuestion(i)">
+              Remove question
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="card-body border-top"> -->
+        <div class="form-group row text-right">
+          <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
+            <button class="btn btn-success btn-sm mb-2 d-block" (click)="addQuestion()">
+              <i class="fas fa-plus"></i> Question
+            </button>
+          </div>
+         </div> 
+      <!-- </div> -->
+
+      <button
+        [disabled]="form.form.invalid || scoreform.questions?.length == 0 "
+        type="button"
+        class="btn btn-primary btn-sm"
+        (click)="onEditScoreForm()"
+      >
+        Save changes
+      </button>
+    </form>
+  </div>
+  <div class="card-footer">
+    <div class="btn-group mr-2" role="group" aria-label="First group">
+      <a [routerLink]="baseLink + 'list-all'" class="btn btn-primary btn-sm">
+        <i class="fas fa-backward"></i> Back to list</a
+      >
+    </div>
+  </div>
+</div>
+<!-- <app-add></app-add> formulaire d'ajout d'un account -->

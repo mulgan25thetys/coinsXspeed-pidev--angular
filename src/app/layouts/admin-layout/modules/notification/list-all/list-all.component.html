@@ -1,0 +1,106 @@
+<!-- pageheader  -->
+<!-- ============================================================== -->
+<app-page-header [title]="pageTitle"></app-page-header>
+<!-- ============================================================== -->
+<!-- end pageheader  -->
+<!-- ============================================================== -->
+<div class="row">
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-inline-block">
+                    <h5 class="text-muted">Total Notifications</h5>
+                    <h2 class="mb-0">{{  listNotifications.length }}</h2>
+                </div>
+                <div class="float-right icon-circle-medium  icon-box-lg  bg-primary-light mt-1">
+                    <i class="far fa-file-alt fa-fw fa-sm text-primary"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card">
+    <h5 class="card-header"><span style="margin-right: 30px;">Notifications Table</span>
+        
+    </h5>
+    <div class="card-body border-top" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+            <a  [routerLink]="[baseLink+'add']" class="btn btn-success btn-sm"><i class="fas fa-plus"></i> Add</a>
+          </div>
+          <div id="custom-search" class="mt-3">
+            <input class="form-control" [(ngModel)]="search" name="search" type="text" placeholder="Search..">
+        </div>
+      </div>
+    
+    <div class="card-body ">
+        <div class="table-responsive">
+        <table class="table table-striped">
+            <thead> 
+                <tr>
+                    <th scope="col"><label class="custom-control custom-checkbox">
+                     <input type="checkbox" [checked]="isAllCheckBoxChecked()" (change)="checkAllCheckBox($event)"  class="custom-control-input">
+                     <span class="custom-control-label"></span>
+                      </label></th>
+                    <th>Type </th>
+                    <th>Object</th>
+                    <th>Message</th>
+                    <th>Sent On</th>
+                    <th>Recepient</th>
+                    <th>Is Sended</th>
+                    <th>Date of creation</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                    <tr *ngFor="let notif of listNotifications | filter : search | paginate
+                        : {
+                            itemsPerPage: tableSize,
+                            currentPage: page,
+                            totalItems: count
+                            };, let i=index">
+                        <th><label class="custom-control custom-checkbox">
+                            <input type="checkbox" value="{{notif.idNotification}}" [(ngModel)]="listNotifications[i].checked"  class="custom-control-input">
+                            <span class="custom-control-label"></span>
+                            </label></th>
+                        <td>{{ notif.type }}</td>
+                        <td>{{ notif.object }}</td>
+                        <td>{{ notif.message }}</td>
+                        <td>{{ notif.sent_on }} DT</td>
+                        <td>{{ notif.recepientId }}</td>
+                        <td>{{ notif.isSended }}</td>
+                        <td>{{ notif.created_at }}</td>
+                        
+                       
+                        <td>
+                            <div class="dropdown float-right">
+                                <a href="#" class="dropdown-toggle  card-drop" data-toggle="dropdown" aria-expanded="true">
+                    <i class="mdi mdi-dots-vertical"></i>
+                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <!-- item-->
+                                    <a [routerLink]="[baseLink+'edit',notif.idNotification]" class="dropdown-item"><i class="fas fa-edit"></i> Edit</a>
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item"><i class="fas fa-trash"></i> Delete</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>     
+            </tbody>
+        </table>
+        
+    </div> 
+    
+    </div>
+    <div class="card-footer">
+        <div class="d-flex justify-content-center">
+            <pagination-controls
+              previousLabel="Prev"
+              nextLabel="Next"
+              (pageChange)="onTableDataChange($event)"
+            >
+            </pagination-controls>
+          </div>
+    </div>
+</div>
+<!-- <app-add></app-add> formulaire d'ajout d'un account -->
+<!-- <app-add (update_data)="onActualize($event)"></app-add> -->

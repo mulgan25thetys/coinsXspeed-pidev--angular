@@ -1,0 +1,230 @@
+<!-- pageheader  -->
+<!-- ============================================================== -->
+<app-page-header [title]="pageTitle"></app-page-header>
+<!-- ============================================================== -->
+<!-- end pageheader  -->
+<!-- ============================================================== -->
+<div class="row">
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-inline-block">
+                    <h5 class="text-muted">Total Accounts</h5>
+                    <h2 class="mb-0">{{ listAccounts?.length }}</h2>
+                </div>
+                <div class="float-right icon-circle-medium  icon-box-lg  bg-primary-light mt-1">
+                    <i class="fa fa-user fa-fw fa-sm text-primary"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-inline-block">
+                    <h5 class="text-muted">Currents</h5>
+                    <h2 class="mb-0">{{ total_currents }}</h2>
+                </div>
+                <div class="float-right icon-circle-medium  icon-box-lg  bg-success-light mt-1">
+                    <i class="fa fa-user fa-fw fa-sm text-success"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-inline-block">
+                    <h5 class="text-muted">Savings</h5>
+                    <h2 class="mb-0"> {{ total_savings }}</h2>
+                </div>
+                <div class="float-right icon-circle-medium  icon-box-lg  bg-info-light mt-1">
+                    <i class="fa fa-user fa-fw fa-sm text-info"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-inline-block">
+                    <h5 class="text-muted">Opened</h5>
+                    <h2 class="mb-0">{{ total_opened }}</h2>
+                </div>
+                <div class="float-right icon-circle-medium  icon-box-lg  bg-brand-light mt-1">
+                    <i class="fas fa-lock-open fa-fw fa-sm text-brand"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-inline-block">
+                    <h5 class="text-muted">Closed</h5>
+                    <h2 class="mb-0">{{ total_closed }}</h2>
+                </div>
+                <div class="float-right icon-circle-medium  icon-box-lg  bg-brand-light mt-1">
+                    <i class="fas fa-window-close fa-fw fa-sm text-warning"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-inline-block">
+                    <h5 class="text-muted">Locked</h5>
+                    <h2 class="mb-0">{{ total_locked }}</h2>
+                </div>
+                <div class="float-right icon-circle-medium  icon-box-lg  bg-danger-light mt-1">
+                    <i class="fas fa-lock fa-fw fa-sm text-danger"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-inline-block">
+                    <h5 class="text-muted">Approved</h5>
+                    <h2 class="mb-0">{{ total_approved }}</h2>
+                </div>
+                <div class="float-right icon-circle-medium  icon-box-lg  bg-success-light mt-1">
+                    <i class="fas fa-check fa-fw fa-sm text-success"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-inline-block">
+                    <h5 class="text-muted">Inapproved</h5>
+                    <h2 class="mb-0">{{ total_inapproved }}</h2>
+                </div>
+                <div class="float-right icon-circle-medium  icon-box-lg  bg-danger-light mt-1">
+                    <i class=" fas fa-ban fa-fw fa-sm text-danger"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-inline-block">
+                    <h5 class="text-muted">Total capital</h5>
+                    <h2 class="mb-0">DT {{ total_capital }}</h2>
+                </div>
+                <div class="float-right icon-circle-medium  icon-box-lg  bg-brand-light mt-1">
+                    <i class="far fa-money-bill-alt fa-fw fa-sm text-brand"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card">
+    <h5 class="card-header"><span style="margin-right: 30px;">Accounts Table</span>
+        
+    </h5>
+    <div class="card-body border-top" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+            <a  data-toggle="modal" data-target="#accountModal" [routerLink]="[]" class="btn btn-success btn-sm"><i class="fas fa-plus"></i> Add</a>
+          </div>
+          <div class="btn-group mr-2" role="group" aria-label="Third group">
+              <a  [routerLink]="[]" (click)="exportExcel()" class="btn btn-primary btn-sm"><i class="fas fa-download"></i> Excel</a>
+          </div>
+          <div  class="btn-group mr-2" role="group" aria-label="Second group">
+            <a  [routerLink]="" (click)="onActualize()" class="btn btn-info btn-sm"><i class="fas fa-redo"></i></a>
+            </div>
+          <div id="custom-search" class="mt-3">
+            <input class="form-control" [(ngModel)]="search" name="search" type="text" placeholder="Search..">
+        </div>
+      </div>
+    
+    <div class="card-body ">
+        <div class="table-responsive">
+        <table class="table table-striped">
+            <thead> 
+                <tr>
+                    <th scope="col"><label class="custom-control custom-checkbox">
+                     <input type="checkbox" [checked]="isAllCheckBoxChecked()" (change)="checkAllCheckBox($event)"  class="custom-control-input">
+                     <span class="custom-control-label"></span>
+                      </label></th>
+                    <th>Account Number</th>
+                    <th>Type</th>
+                    <th>Capital</th>
+                    <th>Score</th>
+                    <th>State</th>
+                    <th>Approved</th>
+                    <th>Date of creation</th>
+                    <th>Last modification</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                    <tr *ngFor="let account of listAccounts | filter : search | paginate
+                        : {
+                            itemsPerPage: tableSize,
+                            currentPage: page,
+                            totalItems: count
+                            };, let i=index">
+                        <th><label class="custom-control custom-checkbox">
+                            <input type="checkbox" value="{{account.id_account}}" [(ngModel)]="listAccounts[i].checked"  class="custom-control-input">
+                            <span class="custom-control-label"></span>
+                            </label></th>
+                        <td>{{ account.account_number }}</td>
+                        <td>{{ account.type }}</td>
+                        <td>{{ account.capital }} DT</td>
+                        <td>{{ account.score }}</td>
+                        <ng-container [ngSwitch]="account.state">
+                            <td *ngSwitchCase="'OPENED'"><span class="badge badge-success">opened</span></td>
+                            <td *ngSwitchCase="'CLOSED'"><span class="badge badge-info">closed</span></td>
+                            <td *ngSwitchCase="'LOCKED'"><span class="badge badge-danger">locked</span></td>
+                        </ng-container>
+                        <!-- <td><div class="switch-button switch-button-xs">
+                            <input type="checkbox" [checked]="account.state == 'OPENED'" name="switch12" (click)="changeStatus()"><span>
+                        <label for="switch12"></label></span>
+                        </div></td> -->
+                        <ng-container [ngSwitch]="account.isApproved">
+                            <td *ngSwitchCase="true"><span class="badge badge-success">Yes</span></td>
+                            <td *ngSwitchCase="false"><span class="badge badge-danger">No</span></td>
+                        </ng-container>
+                        
+                        <td>{{ account.created_at }}</td> 
+                        <td>{{ account.updated_at }}</td>
+                        <td>
+                            <div class="dropdown float-right">
+                                <a href="#" class="dropdown-toggle  card-drop" data-toggle="dropdown" aria-expanded="true">
+                    <i class="mdi mdi-dots-vertical"></i>
+                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <!-- item-->
+                                    <a [routerLink]="[baseLink+'edit',account.id_account]" class="dropdown-item"><i class="fas fa-edit"></i> Edit</a>
+                                    <!-- item-->
+                                    <a [routerLink]="['/admin/management/financial-service/account',account.id_account,'list-all']"  class="dropdown-item"><i class="fas fa-eye"></i> Financial services</a>
+
+                                    <a [routerLink]="['/admin/management/transaction/account',account.id_account,'list-all']" class="dropdown-item"><i class="fas fa-eye"></i> Transactions</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>     
+            </tbody>
+        </table>
+        
+    </div> 
+    
+    </div>
+    <div class="card-footer">
+        <div class="d-flex justify-content-center">
+            <pagination-controls
+              previousLabel="Prev"
+              nextLabel="Next"
+              (pageChange)="onTableDataChange($event)"
+            >
+            </pagination-controls>
+          </div>
+    </div>
+</div>
+<!-- <app-add></app-add> formulaire d'ajout d'un account -->
+<app-add (update_data)="onActualize($event)"></app-add>

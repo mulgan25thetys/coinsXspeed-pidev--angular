@@ -1,0 +1,68 @@
+<!-- pageheader  -->
+<!-- ============================================================== -->
+<app-page-header [title]="pageTitle"></app-page-header>
+<!-- ============================================================== -->
+<!-- end pageheader  -->
+<!-- ============================================================== -->
+<div class="card">
+    <h5 class="card-header">
+      <span style="margin-right: 30px">Add Form for Scoring</span>
+    </h5>
+  
+    <div class="card-body">
+      <form #form="ngForm" novalidate>
+        <!-- {{form.value | json}} -->
+        
+        <div class="form-group row">
+          <label class="col-12 col-sm-3 col-form-label text-sm-right" for="title">Title</label>
+          <div class="col-12 col-sm-8 col-lg-6">
+            <input
+            class="form-control"
+            name="title"
+            placeholder="Title..."
+            #rtitle
+            required
+            />
+          <!-- <p class="text-danger" [class.d-none]="title.valid || title.untouched">Title is required</p> -->
+          <div *ngIf="false">
+            <p class="text-danger" *ngIf="false">
+              Title is required</p
+            >
+          </div>
+        </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-12 col-sm-3 col-form-label text-sm-right" for="content">Content</label>
+            <div class="col-12 col-sm-8 col-lg-6">
+              <input
+              class="form-control"
+              name="content"
+              placeholder="Content..."
+              #rtitle
+              required
+              />
+            <!-- <p class="text-danger" [class.d-none]="title.valid || title.untouched">Title is required</p> -->
+            <div *ngIf="false">
+              <p class="text-danger" *ngIf="false">
+                Content is required</p
+              >
+            </div>
+          </div>
+          </div>
+        <button
+          [disabled]="form.form.invalid"
+          type="button"
+          class="btn btn-primary btn-sm"
+        >
+          Save changes
+        </button>
+      </form>
+    </div>
+    <div class="card-footer">
+      <div class="btn-group mr-2" role="group" aria-label="First group">
+        <a [routerLink]="baseLink + 'list-all'" class="btn btn-primary btn-sm">
+          <i class="fas fa-backward"></i> Back to list</a
+        >
+      </div>
+    </div>
+  </div>

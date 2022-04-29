@@ -1,0 +1,62 @@
+<div class="modal fade" id="accountModal" tabindex="-1" role="dialog" aria-labelledby="accountModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="accountModaLabel">Add Account</h5>
+                <a href="#" class="close" >
+                <span aria-hidden="true" (click)="closeModal('')">&times;</span></a>
+            </div>
+            <div class="modal-body">
+              <form #form="ngForm" novalidate>
+                <!-- {{ form.value | json }}
+                {{ form.invalid }} {{ hasError }} -->
+                <div class="form-group">
+                  <label class="col-form-label" for="select">Client</label>
+                  <select 
+                    class="form-control #select form-control-md"
+                    (blur)="validateTopic(userName.value)"
+                    (change)="validateTopic(userName.value)"
+                    name="idUser"
+                    [(ngModel)]="account?.user.userId"
+                    #userName="ngModel"
+                    required
+                    [class.is-invalid]="hasError && userName.touched"
+                  >
+                    <option value="default">Select Client</option>
+                    <option *ngFor="let client of listClients" [value]="client.userId">
+                      {{ client.userName }} | {{ client.email }}
+                    </option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="col-form-label" for="select">Account Type</label>
+                  <select
+                    class="form-control form-control-md"
+                    #type="ngModel"
+                    [(ngModel)]="account.type"
+                    name="type"
+                    (blur)="validateTopic_t(type.value)"
+                    (change)="validateTopic_t(type.value)"
+                    required
+                    [class.is-invalid]="hasError_t && type.touched"
+                  >
+                    <option value="default">Select account type</option>
+                    <option value="CURRENT">Current</option>
+                    <option value="SAVINGS">Savings</option>
+                  </select>
+                </div>
+                <div class="form-group text-right">
+                    <button
+                      type="button"
+                      [disabled]="form.invalid || hasError || hasError_t"
+                      (click)="onAddAccount(form)"
+                      class="btn btn-primary"
+                    >
+                      Save changes
+                    </button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>

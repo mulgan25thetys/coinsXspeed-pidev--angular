@@ -1,0 +1,111 @@
+<div class="row">
+    <div class="col-xl-10">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <app-header></app-header>
+        <!-- ============================================================== -->
+        <!-- end pageheader -->
+        <!-- ============================================================== -->
+        <div *ngIf="showMessage " class="alert alert-dismissible fade show" [ngClass]="class" role="alert">
+            {{ message }}.
+            <a href="#" class="close" data-dismiss="alert" aria-label="Close">
+               <span aria-hidden="true">&times;</span> </a>
+        </div>
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="section-block">
+                    <h5 class="section-title">My account</h5>
+                    <!-- <p>Takes the basic nav from above and adds the .nav-tabs class to generate a tabbed interface..</p> -->
+                </div>
+                <div class="tab-regular">
+                    <ul class="nav nav-tabs" id="myTab7" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="account-vertical-tab" data-toggle="tab" href="#account-vertical" role="tab" aria-controls="account" aria-selected="true">My Account</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="scoring-vertical-tab" data-toggle="tab" href="#scoring-vertical" role="tab" aria-controls="scoring" aria-selected="false">Bank Scoring</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent3">
+                        <div class="tab-pane fade show active" id="account-vertical" role="tabpanel" aria-labelledby="account-vertical-tab">
+                            
+                            <div class="card">
+                                <h5 class="card-header">Account</h5>
+                                <div class="card-body">
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">Number    : {{ account?.account_number }}</li>
+                                        <li class="list-group-item">Capital   : {{ account?.capital }}</li>
+                                        <li class="list-group-item">Score     : {{ account?.score }}</li>
+                                        <li class="list-group-item">Type      : {{ account?.type }}</li>
+                                        <li class="list-group-item">State     :   {{ account?.state }}</li>
+                                        <li class="list-group-item">Create at : {{ account?.created_at }}</li>
+                                        <li *ngIf="account?.isApproved == false" class="list-group-item"> 
+                                            <p class="text-danger"> Account not approved!</p>
+                                            <p class="text-d"></p>
+                                        </li>
+                                        <li *ngIf="account?.isApproved == true" class="list-group-item"> 
+                                            <p class="text-success"> Account is approved!</p>
+                                            <p class="text-d"></p>
+                                        </li>
+                                    </ul>
+                                </div> 
+                                <!-- ============================================================== -->
+                                <!-- end flush list -->
+                                <!-- ============================================================== -->
+                                
+                            </div>
+                            <!-- <p class="text-primary" *ngIf="account?.isApproved == false">You can improve it by answering a form go to Bank scoring section!</p> -->
+                            <p class="text-success" *ngIf="account?.isApproved == true">Ask for Loan now! <a class="btn btn-primary btn-sm" [routerLink]="['/financial-service','loan']">Here</a></p>
+                        </div>
+                        <div class="tab-pane fade " id="scoring-vertical" role="tabpanel" aria-labelledby="scoring-vertical-tab">
+
+                            <form #SendRequest="ngForm" novalidate *ngIf="show_form">
+                                <h3> {{scoreform?.title}}</h3>
+                                <p>{{ scoreform?.description }}</p>
+
+                                <div *ngFor="let question of scoreform?.questions,let i = index" class="card">
+                                    <h5 class="card-header"> Question N°{{i+1}}
+                                    <p>{{ question?.description }}</p>
+                                </h5>
+                                    <div class="card-body">
+                                        <ul class="list-group">
+                                            <li *ngFor="let proposition of question?.propositions,let j=index" class="list-group-item d-flex align-items-center">
+                                                
+                                                <div class="form-check">
+                                                    <label class="custom-control custom-radio custom-control-inline">
+                                                        <input type="radio" name="answer{{question.id_scoreQuestion}}" 
+                                                        [attr.id]="'p_'+proposition.id_proposition" class="custom-control-input"
+                                                        [value]="proposition?.description" required [(ngModel)]="scoreform.questions[i].answer.description">
+                                                        <span class="custom-control-label">{{ proposition?.description }}</span>
+                                                    </label>
+                                                </div>
+                                                
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>  
+                                <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
+                                    <p style="color: white">Please Wait. </p>  
+                                </ngx-spinner>                                                                                                                                                                                                                                                                                              
+                                <button [disabled]="SendRequest.invalid" (click)="completeForm(SendRequest)" class="btn btn-success">Validate</button>
+                            </form>
+                            <div *ngIf="!show_form" class="alert alert-info">
+                                No Scoring form! Please start asking for loan <a routerLink="/home" class="btn btn-sm btn-primary">Get started</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- sidebar nav  -->
+    <!-- ============================================================== -->
+    <div class="col-xl-2 col-lg-2 col-md-6 col-sm-12 col-12">
+        <app-menu></app-menu>
+    </div>
+    <!-- ============================================================== -->
+    <!-- end sidebar nav  -->
+    <!-- ============================================================== -->
+</div>

@@ -1,0 +1,83 @@
+<div class="nav-left-sidebar sidebar-dark">
+    <div class="menu-list">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav flex-column">
+                    <li class="nav-divider">
+                        Menu
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" routerLinkActive="active" routerLink="/admin/dashboard">
+                        <i class="fas fa-tachometer-alt"></i>Dashboard <span class="badge badge-success">6</span></a>
+                    </li>
+                    <li class="nav-divider">
+                        Apps
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [ngClass]="activeMenu('blog',2)" routerLink="/admin/blog" ><i class="fa fa-fw fa-bookmark"></i>Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [ngClass]="activeMenu('forum',2)" routerLink="/admin/forum" ><i class="fa fa-fw fa-comment"></i>Forum</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [ngClass]="activeMenu('management',2)" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fas fa-fw fa-file"></i> Management </a>
+                        <div id="submenu-1" class="collapse submenu" >
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" [ngClass]="activeMenu('account',3)" routerLink="/admin/management/account">Accounts</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" [ngClass]="activeMenu('users',3)" routerLink="/admin/management/users">Users</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" [ngClass]="activeMenu('financial-service',3)" routerLink="/admin/management/financial-service">Financial services</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" [ngClass]="activeMenu('scoring',3)" routerLink="/admin/management/scoring">Scorings</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" [ngClass]="activeMenu('payments',3)" routerLink="/admin/management/payments">Payments</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" [ngClass]="activeMenu('claim',3)" routerLink="/admin/management/claim">Claims</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" [ngClass]="activeMenu('transaction',3)" routerLink="/admin/management/transaction/" routerLinkActive="active">Transactions</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-divider">
+                        Pages
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/admin/notification/list-all" routerLinkActive="active" ><i class="fa fa-fw fa-bell"></i>Notifications</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [ngClass]="activeMenu('auth',2)" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-fw fa-user"></i> Authentification </a>
+                        <div id="submenu-2" class="collapse submenu" >
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" [ngClass]="activeMenu('profile',3)" routerLinkActive="active" routerLink="/admin/auth/profile">Profile</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" routerLink="/auth/login">Login</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" routerLink="/auth/forgot-password">Forgot password</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" routerLink="/auth/reset-password">Reset password</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>

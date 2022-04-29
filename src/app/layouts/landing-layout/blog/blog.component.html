@@ -1,0 +1,45 @@
+<div class="card">
+    <!-- <h5 class="card-header">Slides with Controls</h5> -->
+    <div class="card-body">
+        
+        <div class="row">
+            <div class="col-xl-9 col-lg-8 col-md-8 col-sm-12 col-12">
+
+                <div class="row mt-5"><div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <h2 class="text-center mb-3"> Blog</h2>
+                </div></div>
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="card-columns">
+
+                            <app-post class="card" *ngFor="let post of list_no_financial_services | paginate
+                            : {
+                                itemsPerPage: tableSize,
+                                currentPage: page,
+                                totalItems: count
+                                };" [no_financialservice]="post"></app-post>      
+
+                        </div>
+                     
+                        <div class=" col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center">
+                            
+                            <div class="d-flex justify-content-center">
+                                <pagination-controls
+                                  previousLabel="Prev"
+                                  nextLabel="Next"
+                                  (pageChange)="onTableDataChange($event)"
+                                >
+                                </pagination-controls>
+                              </div>
+
+                        </div>
+                    </div> 
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 col-12">
+                <app-landing-sidebar [title]="sideTitle"></app-landing-sidebar>
+            </div>
+        </div>
+
+    </div>
+</div>

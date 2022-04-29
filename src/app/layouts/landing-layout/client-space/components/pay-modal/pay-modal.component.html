@@ -1,0 +1,43 @@
+<div class="modal fade" id="payModal" tabindex="-1" role="dialog" aria-labelledby="payModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="payModaLabel">Process to payment</h5>
+                <a href="#" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></a>
+            </div>
+            <div class="modal-body">
+              <form #form="ngForm" novalidate>
+                {{ form.value | json }}
+                 <!--{{ form.invalid }} {{ hasError }} -->
+                 <div class="form-group">
+                    <label class="col-form-label" for="select">Username</label>
+                    <input type="text" disabled class="form-control" name="username" [value]="username">
+                 </div>
+                 <div class="form-group">
+                    <label class="col-form-label" for="select">Account Number</label>
+                    <input type="text" disabled class="form-control" name="acc_number" [value]="acc_number">
+                 </div>
+                <div class="form-group">
+                  <label class="col-form-label" for="select">Paid Amout</label>
+                  <input type="number" class="form-control" [class.is-invalid]="amount.invalid && amount.touched" #amount="ngModel"
+                  [(ngModel)]="payment.paid_amount" name="amount" required >
+                  <div *ngIf="amount.errors && (amount.valid || amount.touched)">
+                    <p class="text-danger" *ngIf="amount.errors?.required">Please set the amount!</p>
+                  </div>
+                </div>
+                <div class="form-group text-right">
+                    <button
+                      type="button"
+                      [disabled]="form.invalid"
+                      (click)="onPayLoan(form)"
+                      class="btn btn-primary"
+                    >
+                      Save changes
+                    </button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>

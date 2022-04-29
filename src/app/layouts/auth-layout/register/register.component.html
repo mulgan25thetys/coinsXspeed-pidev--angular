@@ -1,0 +1,136 @@
+<form class="splash-container" #form="ngForm" >
+    <div class="card">
+        <div class="card-header">
+            <h3 class="mb-1">Registrations Form</h3>
+            <p>Please enter your user information.</p>
+            <div *ngIf="showAlert" [ngClass]="class"  class="alert alert-dismissible fade show"  role="alert">
+                {{ messageAlert }}
+                <a href="#" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></a>
+              </div>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label for="level" class="label-control" >Professional situation</label>
+                <select [class.is-invalid]="level.invalid && level.touched" class="form-control" required name="level" #level="ngModel" [(ngModel)]="user.level" >
+                    <option value="none">None</option>
+                    <option value="student">Student</option>
+                    <option value="professionnal">Professionnal</option>
+                    <option value="entrepreneur">Entrepreneur</option>
+                </select>
+                <div *ngIf="level.errors && (level.valid || level.touched)">
+                    <p class="text-danger" *ngIf="level.errors?.required">Please indicate your Professional situation </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="sitation" class="label-control" >Family situation</label>
+                <select [class.is-invalid]="situation.invalid && situation.touched" class="form-control" required name="situation" #situation="ngModel" [(ngModel)]="user.situation" >
+                    <option value="single">Single</option>
+                    <option value="married">Married</option>
+                    <option value="widower">Widower</option>
+                </select>
+                <div *ngIf="situation.errors && (situation.valid || situation.touched)">
+                    <p class="text-danger" *ngIf="situation.errors?.required">Please your family sitation</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="sitation" class="label-control" >Gender</label>
+                <select [class.is-invalid]="gender.invalid && situation.touched" class="form-control" required name="gender" #gender="ngModel" [(ngModel)]="user.gender" >
+                    <option value="man">Man</option>
+                    <option value="woman">Woman</option>
+                    <option value="noindicated">No Indicated</option>
+                </select>
+                <div *ngIf="gender.errors && (gender.valid || gender.touched)">
+                    <p class="text-danger" *ngIf="gender.errors?.required">Please select gender</p>
+                </div>
+            </div>
+            <hr>
+            <div class="form-group">
+                <input class="form-control form-control-lg" type="text" name="userName" required placeholder="Username" autocomplete="off"
+                #username="ngModel" [(ngModel)]="user.userName" [class.is-invalid]="username.invalid && username.touched"
+                >
+                <div *ngIf="username.errors && (username.valid || username.touched)">
+                    <p class="text-danger" *ngIf="username.errors.required">Username is required</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <input class="form-control form-control-lg" type="text" name="email" required placeholder="E-mail" autocomplete="off"
+                #email="ngModel" [(ngModel)]="user.email" [class.is-invalid]="email.invalid && email.touched"
+                 pattern="^[a-zA-Z0-9-.]+@[a-zA-Z-]+\.[a-zA-Z]{2,6}$">
+                <div *ngIf="email.errors && (email.valid || email.touched)">
+                    <p class="text-danger" *ngIf="email.errors?.required">Email is required</p>
+                    <p class="text-danger" *ngIf="email.errors?.pattern">Email is invalid</p>
+                </div>
+            </div> 
+            <hr>
+            <div class="form-group">
+                <input class="form-control form-control-lg" type="text" name="city" required placeholder="City" autocomplete="off"
+                #city="ngModel" [(ngModel)]="user.city" [class.is-invalid]="city.invalid && city.touched"
+                >
+                <div *ngIf="city.errors && (city.valid || city.touched)">
+                    <p class="text-danger" *ngIf="city.errors.required">City is required</p>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <input class="form-control form-control-lg" type="text" name="country" required placeholder="Country" autocomplete="off"
+                #country="ngModel" [(ngModel)]="user.country" [class.is-invalid]="country.invalid && country.touched"
+                >
+                <div *ngIf="country.errors && (country.valid || country.touched)">
+                    <p class="text-danger" *ngIf="country.errors.required">Country is required</p>
+                </div>
+            </div>
+            <hr>
+            <div class="form-group">
+                <input class="form-control form-control-lg" name="password" type="password" required placeholder="Password"
+                #password="ngModel" [(ngModel)]="user.password" [class.is-invalid]="password.invalid && password.touched"
+                 minlength="8">
+                <div *ngIf="password.errors && (password.valid || password.touched)">
+                    <p class="text-danger" *ngIf="password.errors?.required">Password is required</p>
+                    <p class="text-danger" *ngIf="password.errors?.minlength">Password much contains minimum 8 caracter!</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control form-control-lg" name="confirmp" required placeholder="Confirm"
+                #confirmp="ngModel" [(ngModel)]="user.confirm" [class.is-invalid]="confirmp.invalid && confirmp.touched"
+                 minlength="8" >
+                <div *ngIf="confirmp.errors && (confirmp.valid || confirmp.touched)">
+                    <p class="text-danger" *ngIf="confirmp.errors?.required">Please Confirm password</p>
+                    <p class="text-danger" *ngIf="confirmp.errors?.minlength">Confirm password much contains minimum 8 caracter!</p>
+                </div>
+                <div>
+                    <p class="text-danger" *ngIf="confirmp.touched && (confirmp.value != password.value)">Password and Confirm Password does not match</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="type" class="label-control" >Choose an account</label>
+                <select [class.is-invalid]="type.invalid && type.touched" class="form-control" required name="type" #type="ngModel" [(ngModel)]="user?.account.type" >
+                    <option value="CURRENT">Current</option>
+                    <option value="SAVINGS">Savings</option>
+                </select>
+                <div *ngIf="type.errors && (type.valid || type.touched)">
+                    <p class="text-danger" *ngIf="type.errors?.required">Please select account</p>
+                </div>
+            </div>
+            <div class="form-group pt-2">
+                <button class="btn btn-block btn-primary" [disabled]="form.invalid || (confirmp.value != password.value)" (click)="onRegister(form)" type="button">Register My Account</button>
+            </div>
+            <div class="form-group">
+                <label class="custom-control custom-checkbox">
+                    <input class="custom-control-input" type="checkbox"><span class="custom-control-label">By creating an account, you agree the <a href="#">terms and conditions</a></span>
+                </label>
+            </div>
+            <div class="form-group row pt-0">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-2">
+                    <button class="btn btn-block btn-social btn-facebook " type="button">Facebook</button>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <button class="btn  btn-block btn-social btn-twitter" type="button">Twitter</button>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer bg-white">
+            <p>Already member? <a routerLink="/auth/login" class="text-secondary">Login Here.</a></p>
+        </div>
+    </div>
+</form>

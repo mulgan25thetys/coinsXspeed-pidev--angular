@@ -1,0 +1,20 @@
+<div class="card">
+    <div class="card-body">
+        <div class="card-header bg-info text-center p-3">
+            <h4 class="mb-0 text-white"> {{financial_services.category}}</h4>
+        </div>
+        <div class="card-body text-center">
+            <h1 class="mb-1">${{financial_services.amount}}</h1>
+            <p>Per {{financial_services.reimbment_method}}</p>
+        </div>
+        <div class="card-body border-top">
+            <ul class="list-unstyled bullet-check font-14">
+                <li *ngIf="financial_services.ceiling == 0">Ceiling <span class="badge badge-secondary">Illimited</span></li>
+                <li *ngIf="financial_services.ceiling != 0">Ceiling {{ financial_services.ceiling}}</li>
+                <li>Interest {{financial_services.interest_pr * 100}}% </li>
+                <li>Duration {{financial_services.duration}} <span class="badge badge-info">Year(s)</span></li>
+            </ul>
+            <a [routerLink]="[]" (click)="onSubmitToFinancialService(financial_services.id_ServiceFinancial,financial_services.category)" class="btn btn-secondary btn-block btn-lg">Get Started</a>
+        </div>
+    </div>  
+</div>

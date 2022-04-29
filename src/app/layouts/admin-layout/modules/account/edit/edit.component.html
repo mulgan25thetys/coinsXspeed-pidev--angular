@@ -1,0 +1,94 @@
+<!-- pageheader  -->
+<!-- ============================================================== -->
+<app-page-header [title]="pageTitle"></app-page-header>
+<!-- ============================================================== -->
+<!-- end pageheader  -->
+<!-- ============================================================== -->
+<div *ngIf="showAlert" class="alert alert-info alert-dismissible fade show"  role="alert">
+  {{ messageAlert }}
+  <a href="#" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span></a>
+</div>
+<div class="card">
+  <h5 class="card-header">
+    <span style="margin-right: 30px">Edit Account</span>
+  </h5>
+
+  <div class="card-body">
+    <form #form="ngForm" novalidate>
+      <!-- {{ form.value | json }}
+      {{ form.invalid }} {{ hasError }} -->
+      <div class="form-group row">
+        <label class="col-12 col-sm-3 col-form-label text-sm-right" for="select">Client</label>
+        <div class="col-12 col-sm-8 col-lg-6">
+        <select disabled
+          class="form-control #select form-control-md"
+        >
+          <option [value]="client?.userId">
+            {{ client?.userName }} | {{ client?.email }}
+          </option>
+        </select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-12 col-sm-3 col-form-label text-sm-right" for="type">Account Type</label>
+        <div class="col-12 col-sm-8 col-lg-6">
+        <select
+          class="form-control form-control-md"
+          #type="ngModel"
+          [(ngModel)]="account.type"
+          name="type"
+          (blur)="validateTopic_t(type.value)"
+          (change)="validateTopic_t(type.value)"
+          required
+          [class.is-invalid]="hasError_t && type.touched"
+        >
+          <option value="CURRENT">CURRENT</option>
+          <option value="SAVINGS">SAVINGS</option>
+        </select>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-12 col-sm-3 col-form-label text-sm-right" for="state">Account State</label>
+        <div class="col-12 col-sm-8 col-lg-6">
+        <label for="select">Account State</label>
+        <select
+          class="form-control form-control-md"
+          #state="ngModel"
+          [(ngModel)]="account.state"
+          name="state"
+          (blur)="validateTopic_t(state.value)"
+          (change)="validateTopic_t(state.value)"
+          required
+          [class.is-invalid]="hasError_t && state.touched"
+        >
+          <option value="OPENED">OPENED</option>
+          <option value="CLOSED">CLOSED</option>
+          <option value="LOCKED">LOCKED</option>
+        </select>
+        </div>
+      </div>
+      <div class="form-group row text-right">
+        <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
+          <button
+            type="button"
+            [disabled]="form.invalid"
+            (click)="onEditAccount()"
+            class="btn btn-primary"
+          >
+            Save changes
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="card-footer">
+    <div class="btn-group mr-2" role="group" aria-label="First group">
+      <a [routerLink]="baseLink + 'list-all'" class="btn btn-primary btn-sm"
+        ><i class="fas fa-backward"></i> Back to list</a
+      >
+    </div>
+  </div>
+</div>
+<!-- <app-add></app-add> formulaire d'ajout d'un account -->

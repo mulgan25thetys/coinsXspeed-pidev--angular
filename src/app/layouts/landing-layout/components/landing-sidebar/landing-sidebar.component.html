@@ -1,0 +1,50 @@
+<div class="product-sidebar">
+    <div class="product-sidebar-widget">
+        <h4 class="mb-0">{{title | uppercase}}</h4>
+    </div>
+    <div class="product-sidebar-widget">
+        <h4 class="product-sidebar-widget-title">Category</h4>
+        <ng-container *ngFor="let financial_serv_cat of financial_services_cats">
+            <label class="custom-control custom-checkbox">
+                <input type="checkbox" value="{{financial_serv_cat.name}}" [(ngModel)]="no_fs.checked" 
+                name="checkbox" (ngModelChange)="show_financial_service(financial_serv_cat.name)" 
+                class="custom-control-input" >
+                <!-- <label class="custom-control-label" for="cat-1"></label> -->
+                <span class="custom-control-label">{{financial_serv_cat.name}}</span>
+            </label>
+        </ng-container>
+    </div>
+    <div class="product-sidebar-widget"  [class.d-none]="remove_get_started">
+        <a [routerLink]="[]" (click)="showForm()" class="btn btn-success">Get Started</a>
+    </div>
+    <div class="product-sidebar-widget" [class.d-none]="show_form" >
+        <form #form_fs="ngForm" novalidate>
+            <div class="form-group">
+                <select class="form-control form-control-sm">
+                    <option value="default">Category</option>
+                    <option>Loan</option>
+                    <option>Bank card</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="number" class="form-control" name="" id="" placeholder="Your amount...">
+            </div>
+            <div class="form-group">
+                <input type="number" class="form-control" name="" id="" placeholder="Duration...">
+            </div>
+            <div class="form-group">
+                <select class="form-control form-control-sm">
+                    <option value="default">Choose Reimbourment Mode</option>
+                    <option>Block</option>
+                    <option>Mensuality</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="number" disabled class="form-control" name="" id="" placeholder="Interest...">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" [disabled]="form_fs.invalid">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>

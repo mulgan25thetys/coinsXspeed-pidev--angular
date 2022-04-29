@@ -1,0 +1,39 @@
+<div class="card cardauth">
+    <div class="card-header text-center"><h1>CoinsXspeed</h1><span class="splash-description">Please enter your user information.</span></div>
+    <div class="card-body">
+        <form #formLogin="ngForm" novalidate>
+            <div *ngIf="errors" class="alert alert-danger">
+                {{errors}}
+            </div> 
+            <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
+            <div class="form-group">
+                <input [class.is-invalid]="username.invalid && username.touched" class="form-control form-control-lg" #username="ngModel" name="username"
+                [(ngModel)]="user.userName" required type="text" placeholder="Username">
+                <div *ngIf="username.errors && (username.valid || username.touched)">
+                    <p class="text-danger" *ngIf="username?.errors.required">Username is required</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <input [class.is-invalid]="password.invalid && password.touched" class="form-control form-control-lg" #password="ngModel" type="password" 
+                placeholder="Password" [(ngModel)]="user.password" name="password" required>
+                <div *ngIf="password.errors && (password.valid || password.touched)">
+                    <p class="text-danger" *ngIf="password?.errors.required">Password is required</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="custom-control custom-checkbox">
+                    <input class="custom-control-input" name="remember_me" type="checkbox"><span class="custom-control-label">Remember Me</span>
+                </label>
+            </div>
+            <button [disabled]="formLogin.invalid" type="button" (click)="onLogin()" class="btn btn-primary btn-lg btn-block">Sign in</button>
+        </form>
+    </div>
+    <div class="card-footer bg-white p-0  ">
+        <div class="card-footer-item card-footer-item-bordered">
+            <a routerLink="/auth/forgot-password" class="footer-link">Forgot Password</a>
+        </div>
+        <div class="card-footer-item card-footer-item-bordered">
+            <a routerLink="/auth/signup" class="footer-link">Register</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,83 @@
+<div class="row">
+    <div class="col-xl-10">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <app-header></app-header>
+        <!-- ============================================================== -->
+        <!-- end pageheader -->
+        <!-- ============================================================== -->
+        <div *ngIf="messages !== '' " class="alert alert-dismissible fade show" [ngClass]="class" role="alert">
+            {{ messages }}.
+            <a href="#" class="close" data-dismiss="alert" aria-label="Close">
+               <span aria-hidden="true">&times;</span> </a>
+        </div>
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="section-block">
+                    <h5 class="section-title">My Financial services</h5>
+                    <!-- <p>Takes the basic nav from above and adds the .nav-tabs class to generate a tabbed interface..</p> -->
+                </div>
+                <div class="tab-regular">
+                    <ul class="nav nav-tabs" id="myTab7" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="fs-vertical-tab" data-toggle="tab" href="#fs-vertical" role="tab" aria-controls="fs" aria-selected="true">My Financial services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="fsform-vertical-tab" data-toggle="tab" href="#fsform-vertical" role="tab" aria-controls="fsform" aria-selected="false">Ask new one</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent3">
+                        <div class="tab-pane fade show active" id="fs-vertical" role="tabpanel" aria-labelledby="fs-vertical-tab">
+                            
+                            <div class="card">
+                                <h5 class="card-header">Financial services</h5>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-xl-4 col-lg-12 col-md-6 col-sm-12 col-12" *ngFor="let f_service of list_financial_services,let i =index">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h3 class="card-title">{{f_service.category}}</h3>
+                                                </div>
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item">$ {{f_service.amount}} payment in {{f_service.reimbment_method}}</li>
+                                                    <li class="list-group-item">Ceiling {{f_service.ceiling}}</li>
+                                                    <li class="list-group-item">Duration {{f_service.duration }} years</li>
+                                                    <li class="list-group-item">Interest {{f_service.interest_pr*100 }}%</li>
+                                                </ul>
+                                                <div class="card-footer p-0 text-center d-flex justify-content-center">
+                                                    <div class="card-footer-item card-footer-item-bordered">
+                                                        <a [routerLink]="['/client-space/payments/loan',f_service.id_ServiceFinancial,'show']" class="card-link">Show payments</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                                <!-- ============================================================== -->
+                                <!-- end flush list -->
+                                <!-- ============================================================== -->
+                                
+                            </div>
+                        </div>
+                        <div class="tab-pane fade " id="fsform-vertical" role="tabpanel" aria-labelledby="fsform-vertical-tab">
+
+                            <form #SendRequest="ngForm" novalidate>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- sidebar nav  -->
+    <!-- ============================================================== -->
+    <div class="col-xl-2 col-lg-2 col-md-6 col-sm-12 col-12">
+        <app-menu></app-menu>
+    </div>
+    <!-- ============================================================== -->
+    <!-- end sidebar nav  -->
+    <!-- ============================================================== -->
+</div>
