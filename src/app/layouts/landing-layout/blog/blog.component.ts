@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NoFinancialService } from 'src/app/models/noFinancialService';
+import { NoFinancialServicesService } from 'src/app/services/nofinancialServices/no-financial-services.service';
 
 @Component({
   selector: 'app-blog',
@@ -15,7 +17,7 @@ export class BlogComponent implements OnInit {
   tableSizes: any = [3, 6, 9, 12];
 
   list_no_financial_services :NoFinancialService[] = [];
-  constructor() { }
+  constructor(private NofinanicalService:NoFinancialServicesService,private router:Router) { }
 
   ngOnInit(): void {
     window.scrollTo(0,0);
@@ -23,6 +25,9 @@ export class BlogComponent implements OnInit {
   }
 
   getAllNoFinancialServices(){
+    this.NofinanicalService.getAllNoFinancialServices().subscribe
+    
+    
   
   }
 

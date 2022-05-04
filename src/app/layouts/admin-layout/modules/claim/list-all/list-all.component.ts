@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Claim } from 'src/app/models/claim';
+import { ClaimService } from 'src/app/services/claims/claim.service';
 
 @Component({
   selector: 'app-list-all',
@@ -23,7 +24,8 @@ export class ListAllComponent implements OnInit {
   account_id:any;
   listClaims : Claim[] = [];
 
-  constructor(private activedRoute:ActivatedRoute,private toastr:ToastrService) { }
+  constructor(private activedRoute:ActivatedRoute,
+    private toastr:ToastrService,private serviceclaim:ClaimService) { }
 
   ngOnInit(): void {
     window.scrollTo(0,0);
@@ -31,6 +33,14 @@ export class ListAllComponent implements OnInit {
   }
 
   getAllClaims(){
+    this.serviceclaim.getAllClaim().subscribe(
+      res => {
+        this.listClaims = res;
+      },
+      error => {
+        this.toastr.error(error,"An error has been occured!");
+      }
+    )
   }
 
   onActualize(value:any=null){

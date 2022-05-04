@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AccountServiceService } from 'src/app/services/account/account-service.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { FinancialServiceService } from 'src/app/services/financialServices/financial-service.service';
+import { NoFinancialServicesService } from 'src/app/services/nofinancialServices/no-financial-services.service';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
@@ -17,11 +18,14 @@ export class DashboardComponent implements OnInit {
   total_approved_account : number;
   total_financial_services_available :number;
   total_clients:number;
+  total_financial_services_published:number;
+  total_financial_services_checked:number;
 
   constructor(private auth:AuthenticationService,
      private _service_account:AccountServiceService,
      private _service_f_service:FinancialServiceService,
      private _service_user:UserService,
+     private nofin:NoFinancialServicesService,
      private toarts:ToastrService) { }
 
   ngOnInit(): void {
@@ -50,6 +54,9 @@ export class DashboardComponent implements OnInit {
       },
       error => {this.toarts.error(error,"Internal server error!")}
     )
+  }
+  getTotalNoFinancial_services(){
+    this.nofin.getAllNoFinancialServices().subscribe(res=>this.total_financial_services_published=res.length)
   }
 
   getAllClients(){

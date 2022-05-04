@@ -7,7 +7,7 @@ import { AdminLayoutModule } from '../../admin-layout.module';
 import { ListAllComponent } from './list-all/list-all.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgChartsModule } from 'ng2-charts';
 import { AddComponent } from './add/add.component';
 
@@ -25,7 +25,7 @@ import { AddComponent } from './add/add.component';
     Ng2SearchPipeModule,
     NgxPaginationModule,
     FormsModule,
-    NgChartsModule
+    NgChartsModule,ReactiveFormsModule
   ]
 })
 export class BlogModule { }

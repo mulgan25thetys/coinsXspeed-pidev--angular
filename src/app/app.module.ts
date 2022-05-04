@@ -17,6 +17,8 @@ import { SpinnerOverlayComponent } from './components/spinner-overlay/spinner-ov
 import { OverlayModule } from '@angular/cdk/overlay';
 import { SpinnerInterceptorService } from './helpers/spinner-interceptor.service';
 import { NgChartsModule } from 'ng2-charts';
+import { post } from 'jquery';
+
  
 // var myAppModule = angular.module('MyApp', ['ui.select2']);
 
@@ -24,6 +26,8 @@ import { NgChartsModule } from 'ng2-charts';
   declarations: [
     AppComponent,
     SpinnerOverlayComponent,
+  
+    
   ],
   imports: [
     BrowserModule,

@@ -21,6 +21,7 @@ import { ForumComponent } from './forum/forum.component';
 import { ForumCComponent } from './components/forum-c/forum-c.component';
 
 
+
 @NgModule({
   declarations: [
     LandingLayoutComponent,
@@ -35,6 +36,7 @@ import { ForumCComponent } from './components/forum-c/forum-c.component';
     PostComponent,
     ForumComponent,
     ForumCComponent,
+    
     
   ],
   imports: [
