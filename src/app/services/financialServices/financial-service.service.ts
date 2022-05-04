@@ -18,15 +18,11 @@ export class FinancialServiceService {
 
   constructor(private http:HttpClient) { }
 
-  getFinancialServicesAccount(id:number):Observable<FinancialService[]> {
-    return this.http.get<FinancialService[]>(this.apiUrl+"list-financial-service-account/"+id);
+  getFinancialServicesAccount(id:any):Observable<FinancialService[]> {
+    return this.http.get<FinancialService[]>(this.apiUrl+"get-account"+id);
   }
 
   getAllFinancialServices():Observable<FinancialService[]> {
     return this.http.get<FinancialService[]>(this.apiUrl+"list-financial-service");
-  }
-
-  AddFinancialServiceLoan(id_fs:number,id_user:number):Observable<FinancialService>{
-    return this.http.put<FinancialService>(this.apiUrl+"add-financial-service-loan/"+id_fs+"/"+id_user,null);
   }
 }

@@ -11,14 +11,12 @@ import { CarrouselComponent } from './components/carrousel/carrousel.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { LandingSidebarComponent } from './components/landing-sidebar/landing-sidebar.component';
 import { FormsModule } from '@angular/forms';
-import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
 import { NgChartsModule } from 'ng2-charts';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { PostComponent } from './components/post/post.component';
-import { ForumComponent } from './forum/forum.component';
-import { ForumCComponent } from './components/forum-c/forum-c.component';
+import { ContactComponent } from './contact/contact.component';
 
 
 @NgModule({
@@ -30,11 +28,9 @@ import { ForumCComponent } from './components/forum-c/forum-c.component';
     CarrouselComponent, 
     PaginationComponent,
     LandingSidebarComponent,
-    ContactComponent,
     AboutComponent,
     PostComponent,
-    ForumComponent,
-    ForumCComponent,
+    ContactComponent
     
   ],
   imports: [

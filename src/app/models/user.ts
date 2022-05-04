@@ -5,10 +5,10 @@ import { Notification } from "./notification";
 import { ScoreForm } from "./score-form";
 
 export class User{
+
     userId : any;
     userName : any;
     password : any;
-    confirm:any;
     role : any;
     gender? : any;
     level? : any;

@@ -9,14 +9,12 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule } from '@angular/forms';
 import { NgChartsModule } from 'ng2-charts';
-import { AddComponent } from './add/add.component';
 
 
 @NgModule({
   declarations: [
     UsersComponent,
-    ListAllComponent,
-    AddComponent
+    ListAllComponent
   ],
   imports: [
     CommonModule,

@@ -32,10 +32,6 @@ export class AuthenticationService {
             }));
     } 
 
-    updateCurrentUSerAccount(user:User){
-        localStorage.setItem('currentUser', JSON.stringify(user));
-        return user;
-    }
     logout() {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');

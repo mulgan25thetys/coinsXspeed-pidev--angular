@@ -30,13 +30,48 @@
                             <div class="card">
                                 <h5 class="card-header">Transactions</h5>
                                 <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead class="bg-light">
+                                                <tr class="border-0">
+                                                    <th class="border-0">Type</th>
+                                                    <th class="border-0">Amount</th>
+                                                    <th class="border-0">Date</th>
+                                                    <th class="border-0">Account Number</th>
+                                                    <th class="border-0">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let transaction of listTransactions| paginate
+                                                : { 
+                                                    itemsPerPage: tableSize,
+                                                    currentPage: page,
+                                                    totalItems: count
+                                                    };,let i=index">
+                                                    <td>{{ transaction.type }}</td>
+                                                    <td>{{ transaction.amont | number : '1.2' }}</td>
+                                                    <td>{{ transaction.created_at }}</td>
+                                                    <td>{{account_number}}</td>
+                                                    <td><button (click)="deleteTransaction(transaction.idTransaction)" class="btn btn-danger btn-sm">Delete</button></td>
+                                                </tr> 
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div> 
                                 <!-- ============================================================== -->
                                 <!-- end flush list -->
                                 <!-- ============================================================== -->
                                 <div class="card-footer">
-                                    <div class="d-flex justify-content-center">
-                                      </div>
+                                    <div class="card-footer">
+                                        <div class="d-flex justify-content-center">
+                                            <pagination-controls
+                                              previousLabel="Prev"
+                                              nextLabel="Next"
+                                              (pageChange)="onTableDataChange($event)"
+                                            >
+                                            </pagination-controls>
+                                          </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -44,7 +79,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> 
     <!-- ============================================================== -->
     <!-- sidebar nav  -->
     <!-- ============================================================== -->

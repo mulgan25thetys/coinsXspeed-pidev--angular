@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'management/account', loadChildren: () => import('./modules/account/account.module').then(m => m.AccountModule) },
   { path: 'management/users', loadChildren: () => import('./modules/users/users.module').then(m => m.UsersModule) },
-  { path: 'forum', loadChildren: () => import('./modules/chat/chat.module').then(m => m.ChatModule) },
+  { path: 'chat', loadChildren: () => import('./modules/chat/chat.module').then(m => m.ChatModule) },
   { path: 'management/financial-service', loadChildren: () => import('./modules/financial-service/financial-service.module').then(m => m.FinancialServiceModule) },
   { path: 'blog', loadChildren: () => import('./modules/blog/blog.module').then(m => m.BlogModule) },
   { path: 'management/transaction', loadChildren: () => import('./modules/transaction/transaction.module').then(m => m.TransactionModule) },

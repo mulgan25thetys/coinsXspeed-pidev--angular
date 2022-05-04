@@ -8,9 +8,7 @@ const routes: Routes = [
   { path: '',redirectTo:'list-all'},
   { path: 'add',component:AddComponent},
   { path: 'edit/:id',component:EditComponent},
-  { path: 'list-all', component: ListAllComponent,data :{'title':'list'}},
-  { path: 'user/:id/show',component:ListAllComponent}
-];
+  { path: 'list-all', component: ListAllComponent,data :{'title':'list'}}];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

@@ -10,7 +10,7 @@
             <div class="card-body">
                 <div class="d-inline-block">
                     <h5 class="text-muted">Total Notifications</h5>
-                    <h2 class="mb-0">{{  listNotifications.length }}</h2>
+                    <h2 class="mb-0">{{  listNotifications?.length }}</h2>
                 </div>
                 <div class="float-right icon-circle-medium  icon-box-lg  bg-primary-light mt-1">
                     <i class="far fa-file-alt fa-fw fa-sm text-primary"></i>
@@ -42,7 +42,7 @@
                      <span class="custom-control-label"></span>
                       </label></th>
                     <th>Type </th>
-                    <th>Object</th>
+                    <th>Object</th> 
                     <th>Message</th>
                     <th>Sent On</th>
                     <th>Recepient</th>
@@ -65,9 +65,12 @@
                         <td>{{ notif.type }}</td>
                         <td>{{ notif.object }}</td>
                         <td>{{ notif.message }}</td>
-                        <td>{{ notif.sent_on }} DT</td>
+                        <td>{{ notif.sent_on }}</td>
                         <td>{{ notif.recepientId }}</td>
-                        <td>{{ notif.isSended }}</td>
+                        <ng-container [ngSwitch]="notif.sended">
+                            <td *ngSwitchCase="true"><span class="badge badge-success">Sended</span></td>
+                            <td *ngSwitchCase="false"><span class="badge badge-danger">No sended</span></td>
+                        </ng-container>
                         <td>{{ notif.created_at }}</td>
                         
                        
@@ -80,7 +83,7 @@
                                     <!-- item-->
                                     <a [routerLink]="[baseLink+'edit',notif.idNotification]" class="dropdown-item"><i class="fas fa-edit"></i> Edit</a>
                                     <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item"><i class="fas fa-trash"></i> Delete</a>
+                                    <a href="javascript:void(0);" (click)="ondeleteNotification(notif.idNotification)" class="dropdown-item"><i class="fas fa-trash"></i> Delete</a>
                                 </div>
                             </div>
                         </td>

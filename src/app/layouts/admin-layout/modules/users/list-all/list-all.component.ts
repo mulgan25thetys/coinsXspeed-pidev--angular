@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/models/user';
 import { AccountServiceService } from 'src/app/services/account/account-service.service';
-import { AuthenticationService } from 'src/app/services/authentication.service';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
@@ -13,8 +12,6 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class ListAllComponent implements OnInit {
 
-  themeCustomer:string="Clients";
-  isAdmin:boolean=false;
   pageTitle : string ="Management > Users";
   baseLink : string ="/admin/management/users/";
 
@@ -30,8 +27,7 @@ export class ListAllComponent implements OnInit {
 
   constructor(private activedRoute:ActivatedRoute,
     private toastr:ToastrService,
-    private service_user:UserService,
-    private auth:AuthenticationService) { }
+    private service_user:UserService) { }
 
   ngOnInit(): void {
     window.scrollTo(0,0);
@@ -39,21 +35,10 @@ export class ListAllComponent implements OnInit {
   }
 
   getAllUsers(){
-    if (this.auth.currentUserValue.role == "AGENT") {
-      this.service_user.getAllUsers().subscribe(
-        res => {
-          this.listUsers =res.filter(
-            user => user.role == 'CLIENT'
-          )
-        },
-        error => {this.toastr.error(error,'An error ha been occured!');}
-      )
-    } else {
-      this.service_user.getAllUsers().subscribe(
-        res => {this.listUsers =res; this.themeCustomer = "Users"; this.isAdmin = true;},
-        error => {this.toastr.error(error,'An error ha been occured!');}
-      ) 
-    }
+    this.service_user.getAllUsers().subscribe(
+      res => {this.listUsers =res;},
+      error => {this.toastr.error(error,'An error ha been occured!');}
+    )
   }
 
   onActualize(value:any=null){

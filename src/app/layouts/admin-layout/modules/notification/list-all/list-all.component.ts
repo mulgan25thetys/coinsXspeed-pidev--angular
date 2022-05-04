@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Notification } from 'src/app/models/notification';
+import { NotificationService } from 'src/app/services/notification/notification.service';
 
 @Component({
   selector: 'app-list-all',
@@ -23,7 +24,7 @@ export class ListAllComponent implements OnInit {
   account_id:any;
   listNotifications : Notification[] = [];
 
-  constructor(private activedRoute:ActivatedRoute,private toastr:ToastrService) { }
+  constructor(private activedRoute:ActivatedRoute,private toastr:ToastrService,private service:NotificationService) { }
 
   ngOnInit(): void {
     window.scrollTo(0,0);
@@ -31,6 +32,13 @@ export class ListAllComponent implements OnInit {
   }
 
   getAllNotifications(){
+    this.service.getNotification().subscribe(
+      res => {
+        // console.log(res);
+        this.listNotifications = res;
+      },
+      error =>{this.toastr.error('List Notifications','An error has been occured!');}
+    )
   }
 
   onActualize(value:any=null){
@@ -40,6 +48,17 @@ export class ListAllComponent implements OnInit {
       this.getAllNotifications();
     }
     
+  }
+
+  ondeleteNotification(id:any){
+    this.service.deleteNotification(id).subscribe(
+      res => {
+        this.toastr.success('Deletion','Notification has been deleted!');
+        this.ngOnInit();
+      },error =>{
+        this.toastr.error('Deletion','An error has been occured!');
+      }
+    )
   }
 
   onTableDataChange(event: any) {

@@ -7,7 +7,7 @@
         <!-- ============================================================== -->
         <!-- end pageheader -->
         <!-- ============================================================== -->
-        <div *ngIf="showMessage " class="alert alert-dismissible fade show" [ngClass]="class" role="alert">
+        <div *ngIf="message !== '' " class="alert alert-dismissible fade show" [ngClass]="class" role="alert">
             {{ message }}.
             <a href="#" class="close" data-dismiss="alert" aria-label="Close">
                <span aria-hidden="true">&times;</span> </a>
@@ -55,7 +55,7 @@
                                 <!-- ============================================================== -->
                                 
                             </div>
-                            <!-- <p class="text-primary" *ngIf="account?.isApproved == false">You can improve it by answering a form go to Bank scoring section!</p> -->
+                            <p class="text-primary" *ngIf="account?.isApproved == false">You can improve it by answering a form go to Bank scoring section!</p>
                             <p class="text-success" *ngIf="account?.isApproved == true">Ask for Loan now! <a class="btn btn-primary btn-sm" [routerLink]="['/financial-service','loan']">Here</a></p>
                         </div>
                         <div class="tab-pane fade " id="scoring-vertical" role="tabpanel" aria-labelledby="scoring-vertical-tab">
@@ -91,7 +91,7 @@
                                 <button [disabled]="SendRequest.invalid" (click)="completeForm(SendRequest)" class="btn btn-success">Validate</button>
                             </form>
                             <div *ngIf="!show_form" class="alert alert-info">
-                                No Scoring form! Please start asking for loan <a routerLink="/home" class="btn btn-sm btn-primary">Get started</a>
+                                No Scoring form!
                             </div>
                         </div>
                     </div>

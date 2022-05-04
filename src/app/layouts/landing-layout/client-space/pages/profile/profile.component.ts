@@ -7,8 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  messages:string="";
-  class:string="";
   constructor() { }
 
   ngOnInit(): void {

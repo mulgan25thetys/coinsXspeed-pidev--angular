@@ -25,12 +25,4 @@ export class UserService {
   getAllClients() :Observable<User[]> {
     return this.http.get<User[]>(this.apiUrl+"list-users");
   }
-
-  registerUser(customer:User):Observable<User>{
-    return this.http.post<User>(this.apiUrl+"register-customer",customer);
-  }
-
-  addUser(user:User):Observable<User>{
-    return this.http.post<User>(this.apiUrl+"add-users",user);
-  }
 }

@@ -63,11 +63,11 @@
                             <input type="checkbox" value="{{payment.id_ServiceFinancial}}" [(ngModel)]="listPayments[i].checked"  class="custom-control-input">
                             <span class="custom-control-label"></span>
                             </label></th>
-                        <td>{{ payment.account.account_number }}</td>
-                        <td>{{ payment.financialService.category }}</td>
+                        <td>{{ payment.Client_id }}</td>
+                        <td>{{ payment.sevice_id }}</td>
                         <td>{{ payment.amortization }} DT</td>
                         <td>{{ payment.remaining_amount }}</td>
-                        <td>{{ payment.interest | number : '1.2' }}</td>
+                        <td>{{ payment.interest }}</td>
                         <td>{{ payment.paid_amount }}</td>
                         <td>{{ payment.dateLimit }}</td> 
                         <td>{{ payment.dateLimit }}</td> 

@@ -4,8 +4,7 @@ import { ListAllComponent } from './list-all/list-all.component';
 
 const routes: Routes = [
   { path: '', redirectTo :'list-all' },
-  { path:'list-all' ,component:ListAllComponent},
-  { path:'loan/:id/list-all' ,component:ListAllComponent}
+  { path:'list-all' ,component:ListAllComponent}
 ];
 
 @NgModule({

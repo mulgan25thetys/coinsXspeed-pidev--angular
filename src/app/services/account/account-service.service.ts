@@ -49,9 +49,7 @@ export class AccountServiceService {
   // deleteAccount(id:number):Observable<Account>{
   //   return this.http.delete<Account>(this.apiUrl+"/"+id);
   // }
-  exportToExcelFile():Observable<any>{
-    return this.http.get<any>(this.apiUrl+"export/excel");
-  }
+
   getFinancialServices():Observable<FinancialService[]>
   {
     return this.http.get<FinancialService[]>("/api/Coinsxspeed/financial-service/list-financial-service");

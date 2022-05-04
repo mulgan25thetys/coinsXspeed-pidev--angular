@@ -7,9 +7,11 @@ export class NoFinancialService {
 	   category?:any;
 	    title?:any;
 	  
+	
 	    activityType?:any;
 	    content?:any;
-	
+	  
+	  
 	    contentType?:any;
 	    slug?:any;
 	    image?:any;

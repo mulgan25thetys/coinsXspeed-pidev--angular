@@ -26,7 +26,7 @@
           required
           
           >
-            <option value="Loan">Loan</option>
+            <option disabled value="Loan">Loan</option>
             <option value="BankCard">BankCard</option>
             <option value="CheckBook">CheckBook</option>
           </select>
@@ -66,6 +66,27 @@
         <h3 class="section-title">
           Question ({{ i+1 }})
         </h3>
+        <div class="form-group row">
+          <label class="col-12 col-sm-3 col-form-label text-sm-right" for="title_q{{ i }}">Title</label>
+          <div class="col-12 col-sm-8 col-lg-6">
+          <input
+            type="text"
+            name="title_q{{ i }}"
+            [class.is-invalid]="titleq.invalid && titleq.touched"
+            [(ngModel)]="question.title"
+            #titleq="ngModel"
+            value="question N°{{i+1}}"
+            class="form-control"
+            required
+            placeholder="Question title..."
+          />
+          <div *ngIf="titleq.errors && (titleq.valid || titleq.touched)">
+            <p class="text-danger" *ngIf="titleq.errors.required">
+              Question's title is required</p
+            >
+          </div>
+          </div>
+        </div>
         <div class="form-group row">
           <label class="col-12 col-sm-3 col-form-label text-sm-right" for="description_q{{ i }}">Question ?</label>
           <div class="col-12 col-sm-8 col-lg-6">

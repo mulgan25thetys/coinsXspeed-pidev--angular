@@ -1,9 +1,8 @@
-import { Account } from "./account";
-import { FinancialService } from "./financialService";
-
 export class Payment{
     
       id_Payement?:any;
+	  Client_id?:any ;
+	  sevice_id?:any ;
 	  remaining_amount?:any ;
 	  interest?:any ;
 	  amortization?:any ;
@@ -11,7 +10,6 @@ export class Payment{
 	  paid_amount?:any ;
 	  dateLimit?:any ;
 	  creation_date?:any ;
-	  account?:Account;
-	  financialService?:FinancialService ;
-	  checked?:boolean; 
+	  financialService?:any ;
+	  checked?:boolean;
 }

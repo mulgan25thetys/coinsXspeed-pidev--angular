@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FinancialService } from 'src/app/models/financialService';
 import { AccountServiceService } from 'src/app/services/account/account-service.service';
 import { ToastrService } from 'ngx-toastr';
-import { FinancialServiceService } from 'src/app/services/financialServices/financial-service.service';
 
 @Component({
   selector: 'app-list-all',
@@ -17,7 +16,7 @@ export class ListAllComponent implements OnInit {
 
   search:string="";
 
-  page: number = 1; 
+  page: number = 1;
   count: number = 0;
   tableSize: number = 5;
   tableSizes: any = [3, 6, 9, 12];
@@ -26,7 +25,7 @@ export class ListAllComponent implements OnInit {
   listFinancial_services : FinancialService[] = [];
 
   constructor(private activedRoute:ActivatedRoute
-    ,private _service:FinancialServiceService,private toastr:ToastrService) { }
+    ,private _service:AccountServiceService,private toastr:ToastrService) { }
 
   ngOnInit(): void {
     window.scrollTo(0,0);
@@ -36,10 +35,10 @@ export class ListAllComponent implements OnInit {
 
   getAllFinancialServices(id_account:any){
     if(id_account){
-      this._service.getFinancialServicesAccount(this.account_id).subscribe(
+      this._service.getAccount(this.account_id).subscribe(
         res =>{
-          if (res.length > 0) {
-            this.listFinancial_services=res;
+          if (res.financialServices.length > 0) {
+            this.listFinancial_services=res.financialServices;
           } else {
             this.toastr.info('There is not financial services for this account','List Financial services');
           }
@@ -47,9 +46,10 @@ export class ListAllComponent implements OnInit {
         error => {
           this.toastr.error(error,'An error has been occcured!');
         }
+        
       )
     }else {
-      this._service.getAllFinancialServices().subscribe(
+      this._service.getFinancialServices().subscribe(
         res => {this.listFinancial_services = res;},
         error => {this.toastr.error(error);}
       )

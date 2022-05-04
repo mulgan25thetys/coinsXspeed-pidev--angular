@@ -19,7 +19,7 @@ import { FormsModule } from '@angular/forms';
     SigninComponent,
     RegisterComponent,
     ForgotPasswordComponent,
-    ResetPasswordComponent,
+    ResetPasswordComponent
   ],
   imports: [
     CommonModule,

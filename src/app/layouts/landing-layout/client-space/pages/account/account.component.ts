@@ -5,7 +5,6 @@ import { AccountServiceService } from 'src/app/services/account/account-service.
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ScoringsServiceService } from 'src/app/services/scorings/scorings-service.service';
 import * as $ from 'jquery';
-import swal from 'sweetalert2'; 
 
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from "ngx-spinner"; 
@@ -20,9 +19,7 @@ import { NgForm } from '@angular/forms';
 })
 export class AccountComponent implements OnInit {
 
-  current_url :string="/";
-  response:string="";
-  showMessage:boolean=false;
+ 
   account : Account;
   scoreform : ScoreForm;
   answer?:ScoreProposition;
@@ -44,8 +41,6 @@ export class AccountComponent implements OnInit {
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
-    
-    this.current_url = this.router.url;
 
     this.id = this.activedRoute.snapshot.params.id_fs;
     this.form_type = this.activedRoute.snapshot.data.form_type;
@@ -71,8 +66,8 @@ export class AccountComponent implements OnInit {
       this.show_form =true;
       this.scoring_service.getScoreForm(type).subscribe(
         res => {
-          this.showMessage = false;
-          res?.questions?.forEach(question =>{
+          this.message = '';
+          res.questions?.forEach(question =>{
             question.answer.description = '';
           })
           this.scoreform = res;
@@ -90,27 +85,14 @@ export class AccountComponent implements OnInit {
     // console.log(this.scoreform);
       this.scoring_service.completeScoreForm(this.scoreform,this.auth.currentUserValue.userId).subscribe(
          res => {
-           this.response = res.result;
-          SendRequest.reset();  
-          this.account_service.getUserByAccount(this.auth.currentUserValue.userId).subscribe(
-            res_ => {
-            this.auth.updateCurrentUSerAccount(res_);
-            swal.fire(this.response).then(() => {
-              this.router.navigate(['/client-space/my-account'])
-                .then(() => {
-                  window.location.reload();
-                });
-            });
-            }
-          )
-             this.class="alert-success";
-             this.showMessage = true;
+          SendRequest.reset();
+          window.scrollTo(0, 0);
+             this.ngOnInit();
              this.message = res.result;
          },
          error => {
+           console.log(error);
            if(error){
-             this.class="alert-danger";
-            this.showMessage = true;
             this.message = "Internal Server An error has been occured!";
            }
          })

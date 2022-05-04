@@ -71,6 +71,7 @@ export class AddComponent implements OnInit {
         this.toastr.success('Add Account',"The account has been added successfully!");
         form.reset();
         this.update_data.emit(true);
+        $("#accountModal").modal('hide');
         this.ngOnInit();
       },
       error => {
