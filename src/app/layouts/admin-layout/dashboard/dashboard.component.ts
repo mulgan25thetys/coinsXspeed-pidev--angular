@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AccountServiceService } from 'src/app/services/account/account-service.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { FinancialServiceService } from 'src/app/services/financialServices/financial-service.service';
+import { RevenusService } from 'src/app/services/revenus/revenus.service';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
@@ -18,10 +19,12 @@ export class DashboardComponent implements OnInit {
   total_financial_services_available :number;
   total_clients:number;
 
+  revenus:any=0;
   constructor(private auth:AuthenticationService,
      private _service_account:AccountServiceService,
      private _service_f_service:FinancialServiceService,
      private _service_user:UserService,
+     private serviceRevenus:RevenusService,
      private toarts:ToastrService) { }
 
   ngOnInit(): void {
@@ -30,6 +33,18 @@ export class DashboardComponent implements OnInit {
     this.getTotalApp_account();
     this.getTotalFinancial_services();
     this.getAllClients();
+    this.getRevenus();
+  }
+  getRevenus(){
+    this.serviceRevenus.getRevenus().subscribe(
+      res => {
+        this.revenus = res.slice(-1)[0].amount;
+      },
+      error => {
+        console.log(error);
+      }
+      
+    )
   }
 
   getTotalApp_account(){

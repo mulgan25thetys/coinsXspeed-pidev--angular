@@ -1,0 +1,87 @@
+<div class="modal fade" id="financialserviceModal" tabindex="-1" role="dialog" aria-labelledby="financialserviceModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="financialserviceModalLabel">Add Financial Service</h5>
+                <a href="#" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></a>
+            </div>
+            <div class="modal-body"> 
+              <form #form="ngForm" novalidate>
+               <!-- {{ form.value | json }} -->
+                <!--  {{ form.invalid }} {{  }} -->
+                <div class="form-group">
+                  <label class="col-form-label" for="select">Category</label>
+                  <select 
+                    class="form-control #select form-control-md"
+                    name="Category"
+                    [(ngModel)]="financialService.category"
+                    #category="ngModel"
+                    required
+                    [class.is-invalid]="category.invalid && category.touched"
+                  >
+                    <option value="Loan">Loan</option>
+                    <option value="BankCard">BankCard</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                    <label class="col-form-label" for="select">Amount</label>
+                    <input type="number" name="amount" class="form-control" 
+                    [(ngModel)]="financialService.amount"
+                    #amount="ngModel"
+                    required
+                    [class.is-invalid]="amount.invalid && amount.touched"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label class="col-form-label" for="select">Interest</label>
+                    <input type="number" name="interest" class="form-control" 
+                    [(ngModel)]="financialService.interest_pr"
+                    #interest_pr="ngModel"
+                    required
+                    [class.is-invalid]="interest_pr.invalid && interest_pr.touched"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label class="col-form-label" for="select">Duration</label>
+                    <input type="number" name="duration" class="form-control" 
+                    [(ngModel)]="financialService.duration"
+                    #duration="ngModel"
+                    required
+                    [class.is-invalid]="duration.invalid && duration.touched"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label class="col-form-label" for="select">Reimbment Method</label>
+                    <select 
+                      class="form-control #select form-control-md"
+                      name="Reimbment_Method"
+                      [(ngModel)]="financialService.reimbment_method"
+                      #reimbment_method="ngModel"
+                      required
+                      [class.is-invalid]="reimbment_method.invalid && reimbment_method.touched"
+                    >
+                      <option value="Mensuality">Mensuality</option>
+                      <option value="Block">Block</option>
+                    </select>
+                  </div> 
+                  
+                <div class="form-group text-right">
+                    <button
+                      type="button"
+                      [disabled]="form.invalid"
+                      (click)="onAddFinancialService(form)"
+                      class="btn btn-primary"
+                    >
+                      Save changes
+                    </button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+

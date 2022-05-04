@@ -65,7 +65,7 @@
                         <td>{{ f_service.ceiling }}</td>
                         <td>{{ f_service.amount }} DT</td>
                         <td>{{ f_service.duration }}</td>
-                        <td>{{ f_service.interest_pr * 100 }}%</td>
+                        <td>{{ f_service.interest_pr }}%</td> 
                         <td>{{ f_service.date_of_creation }}</td> 
                        
                         <td>
@@ -77,7 +77,7 @@
                                     <!-- item-->
                                     <a [routerLink]="[baseLink+'edit',f_service.id_ServiceFinancial]" class="dropdown-item"><i class="fas fa-edit"></i> Edit</a>
                                     <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item"><i class="fas fa-trash"></i> Delete</a>
+                                    <a href="javascript:void(0);" (click)="onDeleteFinancialService(f_service.id_ServiceFinancial)" class="dropdown-item"><i class="fas fa-trash"></i> Delete</a>
 
                                     <a [routerLink]="['/admin/management/payments/loan/',f_service.id_ServiceFinancial,'list-all']" class="dropdown-item"><i class="fas fa-eye"></i> Payments</a>
                                 </div>
@@ -102,4 +102,4 @@
     </div>
 </div>
 <!-- <app-add></app-add> formulaire d'ajout d'un account -->
-<!-- <app-add (update_data)="onActualize($event)"></app-add> -->
+<app-add (update_data)="onActualize($event)"></app-add>

@@ -12,4 +12,4 @@ export class Transaction{
 	
 	account?: Account ;
 	checked?:boolean;
-}
+} 

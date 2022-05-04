@@ -55,6 +55,19 @@ export class PayementComponent implements OnInit {
     }
   }
 
+  payLoan(payement:Payment){
+    this.pay_service.proceedToPayment(payement).subscribe(
+      res => {
+        this.list_payments = res;
+        this.ngOnInit();
+      },() => {
+        window.scrollTo(0,0);
+        this.messages = "Please contact support an error has been occured!";
+        this.class = "alert-danger";
+      }
+    )
+  }
+
   onActualize(value:any=null){
     if (value == true) {
       this.ngOnInit();

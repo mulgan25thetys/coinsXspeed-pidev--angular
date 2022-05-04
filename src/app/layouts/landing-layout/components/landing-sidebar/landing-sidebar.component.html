@@ -18,33 +18,78 @@
         <a [routerLink]="[]" (click)="showForm()" class="btn btn-success">Get Started</a>
     </div>
     <div class="product-sidebar-widget" [class.d-none]="show_form" >
-        <form #form_fs="ngForm" novalidate>
-            <div class="form-group">
-                <select class="form-control form-control-sm">
-                    <option value="default">Category</option>
-                    <option>Loan</option>
-                    <option>Bank card</option>
-                </select>
+        <form #form="ngForm" novalidate>
+            <!-- {{ form.value | json }} -->
+             <!--  {{ form.invalid }} {{  }} -->
+             <div class="form-group">
+               <label class="col-form-label" for="select">Category</label>
+               <select 
+                 class="form-control #select form-control-md"
+                 name="Category"
+                 [(ngModel)]="financialService.category" 
+                 #category="ngModel"
+                 required
+                 [class.is-invalid]="category.invalid && category.touched"
+               >
+                 <option value="Loan">Loan</option>
+                 <option value="BankCard">BankCard</option>
+               </select>
+             </div> 
+             <div class="form-group">
+                 <label class="col-form-label" for="select">Amount</label>
+                 <input type="number" name="amount" class="form-control" 
+                 [(ngModel)]="financialService.amount"
+                 #amount="ngModel"
+                 required
+                 [class.is-invalid]="amount.invalid && amount.touched"
+                 >
+             </div>
+
+             <div class="form-group">
+                 <label class="col-form-label" for="select">Interest</label>
+                 <input type="number" name="interest" class="form-control" 
+                 [(ngModel)]="financialService.interest_pr"
+                 #interest_pr="ngModel"
+                 required
+                 [class.is-invalid]="interest_pr.invalid && interest_pr.touched"
+                 >
+             </div>
+
+             <div class="form-group">
+                 <label class="col-form-label" for="select">Duration</label>
+                 <input type="number" name="duration" class="form-control" 
+                 [(ngModel)]="financialService.duration"
+                 #duration="ngModel"
+                 required
+                 [class.is-invalid]="duration.invalid && duration.touched"
+                 >
+             </div>
+
+             <div class="form-group">
+                 <label class="col-form-label" for="select">Reimbment Method</label>
+                 <select 
+                   class="form-control #select form-control-md"
+                   name="Reimbment_Method"
+                   [(ngModel)]="financialService.reimbment_method"
+                   #reimbment_method="ngModel"
+                   required
+                   [class.is-invalid]="reimbment_method.invalid && reimbment_method.touched"
+                 >
+                   <option value="Mensuality">Mensuality</option>
+                   <option value="Block">Block</option>
+                 </select>
+               </div>
+               
+               <div class="form-group">
+                <button
+                      type="button"
+                      [disabled]="form.invalid"
+                      (click)="onAddFinancialService(form)"
+                      class="btn btn-primary"
+                    >
+                      Submit 
+                    </button>
             </div>
-            <div class="form-group">
-                <input type="number" class="form-control" name="" id="" placeholder="Your amount...">
-            </div>
-            <div class="form-group">
-                <input type="number" class="form-control" name="" id="" placeholder="Duration...">
-            </div>
-            <div class="form-group">
-                <select class="form-control form-control-sm">
-                    <option value="default">Choose Reimbourment Mode</option>
-                    <option>Block</option>
-                    <option>Mensuality</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <input type="number" disabled class="form-control" name="" id="" placeholder="Interest...">
-            </div>
-            <div class="form-group">
-                <button class="btn btn-primary" [disabled]="form_fs.invalid">Submit</button>
-            </div>
-        </form>
+         </form>
     </div>
 </div>

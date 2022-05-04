@@ -56,6 +56,11 @@ export class ListAllComponent implements OnInit {
     }
   }
 
+  onDeleteFinancialService(id : number){
+    this._service.deleteFinancialService(this.account_id)
+  }
+    
+
   onActualize(value:any=null){
     if (value == true) {
       this.ngOnInit();

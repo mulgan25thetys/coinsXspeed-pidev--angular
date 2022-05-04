@@ -1,14 +1,18 @@
 import { Component, Input, OnInit,Output,EventEmitter } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as $ from 'jquery';
+import { ToastrService } from 'ngx-toastr';
+import { FinancialService } from 'src/app/models/financialService';
 import { NoFinancialService } from 'src/app/models/noFinancialService';
+import { FinancialServiceService } from 'src/app/services/financialServices/financial-service.service';
 
 @Component({
   selector: 'app-landing-sidebar',
   templateUrl: './landing-sidebar.component.html',
   styleUrls: ['./landing-sidebar.component.css']
 })
-export class LandingSidebarComponent implements OnInit {
+export class LandingSidebarComponent implements OnInit { 
 
   @Input() title:string="";
   @Output() requested = new EventEmitter<any>();
@@ -19,7 +23,9 @@ export class LandingSidebarComponent implements OnInit {
   financial_services_cats :any = [];
 
   no_fs = new NoFinancialService();
-  constructor(private router:Router) { }
+  financialService = new FinancialService() ;
+  // update_data: any;
+  constructor(private router:Router, private service:FinancialServiceService, private toastr:ToastrService) { }
 
   ngOnInit(): void {
 
@@ -31,6 +37,20 @@ export class LandingSidebarComponent implements OnInit {
       this.financial_services_cats = [{'name':'Loan'},{'name':'Bank Card'}];
     }
 
+  }
+
+  onAddFinancialService(form:NgForm){
+    this.service.addFinancialServices(this.financialService).subscribe(
+      res => {
+        this.toastr.success('Add Financial service',"The Financial service "+this.financialService.category+" has been added successfully!");
+        form.reset();
+        this.requested.emit();
+        this.ngOnInit();
+      },
+      error => {
+        this.toastr.error(error,"An error has been occured!");
+      }
+    )
   }
 
   showForm(){

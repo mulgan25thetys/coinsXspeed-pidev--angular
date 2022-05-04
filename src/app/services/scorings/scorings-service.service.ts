@@ -28,6 +28,10 @@ export class ScoringsServiceService {
     return this.http.get<ScoreForm>(this.apiUrl+"get-form"+"/"+type);
   }
 
+  getScoreFormByUser(id:any):Observable<ScoreForm>{
+    return this.http.get<ScoreForm>(this.apiUrl+"get-form-by-user/"+id);
+  }
+
   addScoreForm(scoreForm:ScoreForm) :Observable<ScoreForm>{
     return this.http.post<ScoreForm>(this.apiUrl+"add-score-form",scoreForm,this.httpOptions);
   }

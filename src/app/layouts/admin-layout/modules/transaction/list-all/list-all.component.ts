@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Transaction } from 'src/app/models/transaction';
 import { AccountServiceService } from 'src/app/services/account/account-service.service';
 import { ToastrService } from 'ngx-toastr';
+import { TransactionService } from 'src/app/services/transaction/transaction.service';
 
 @Component({
   selector: 'app-list-all',
@@ -25,7 +26,7 @@ export class ListAllComponent implements OnInit {
   listTransactions : Transaction[] = [];
 
   constructor(private activedRoute:ActivatedRoute,
-    private _service:AccountServiceService,private toastr:ToastrService) { }
+    private _service:AccountServiceService,private toastr:ToastrService,private trans_service:TransactionService) { }
 
   ngOnInit(): void {
     window.scrollTo(0,0);
@@ -47,6 +48,14 @@ export class ListAllComponent implements OnInit {
           this.toastr.error(error,'An error has been occcured!');
         }
         
+      )
+    }else{
+      this.trans_service.getAllTransactions().subscribe(
+        res =>{
+          this.listTransactions = res;
+        },error =>{
+          this.toastr.error(error,'An error has been occcured!');
+        }
       )
     }
   }
