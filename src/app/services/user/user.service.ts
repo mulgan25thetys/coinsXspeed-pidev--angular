@@ -33,4 +33,12 @@ export class UserService {
   addUser(user:User):Observable<User>{
     return this.http.post<User>(this.apiUrl+"add-users",user);
   }
+
+  deleteUser(id:number):Observable<any>{
+    return this.http.delete(this.apiUrl+"delete-user/"+id);
+  }
+
+  editUser(user:User):Observable<User>{
+    return this.http.put<User>(this.apiUrl+"edit-user",user);
+  }
 }

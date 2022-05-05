@@ -64,6 +64,41 @@
                   <div *ngIf="role.errors && (role.valid || role.touched)">
                     <p class="text-danger" *ngIf="role?.errors.required">Role is required</p>
                 </div>
+                <div class="form-group">
+                  <label class="col-form-label" for="select">User Level</label>
+                  <select placeholder="Level"
+                    class="form-control form-control-md"
+                    #level="ngModel"
+                    [(ngModel)]="user.level"
+                    name="role"
+                    required
+                    [class.is-invalid]="level.invalid  && level.touched"
+                  >
+                    <option value="none">none</option>
+                    <option value="student">student</option>
+                  </select>
+                  <div *ngIf="level.errors && (level.valid || level.touched)">
+                    <p class="text-danger" *ngIf="level?.errors.required">Level is required</p>
+                </div>
+              </div>
+                <div class="form-group">
+                  <label class="col-form-label" for="select">User Gender</label>
+                  <select placeholder="Gender"
+                    class="form-control form-control-md"
+                    #gender="ngModel"
+                    [(ngModel)]="user.gender"
+                    name="gender"
+                    required
+                    [class.is-invalid]="gender.invalid  && gender.touched"
+                  >
+                    <option value="man">man</option>
+                    <option value="woman">woman</option>
+                  </select>
+                  <div *ngIf="gender.errors && (gender.valid || gender.touched)">
+                    <p class="text-danger" *ngIf="gender?.errors.required">Gender is required</p>
+                  </div>
+
+                </div>
                 </div>
                 <div class="form-group text-right">
                     <button

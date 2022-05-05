@@ -1,5 +1,6 @@
 import { Component, OnInit,Input,Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { Notification } from 'src/app/models/notification';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import swal from 'sweetalert2'; 
 
@@ -15,6 +16,7 @@ export class HeaderComponent implements OnInit {
   @Input() profileLink:string;
   @Input() redirectingLink:string;
 
+  notifications : Notification[] = [];
   visitor:any;
   isAdmin_or_Agent:boolean=false;
   
@@ -23,8 +25,12 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.visitor = this.authenticationService.currentUserValue;
     this.isAdmin_or_Agent = this.visitor?.role == 'ADMIN' || this.visitor?.role ==  'AGENT' ? true :false;
+    this.getNotifications();
   }
 
+  getNotifications(){
+   this.notifications = this.authenticationService.currentUserValue.notifications;
+  }
   logout() {
     swal.fire({
       title: 'Are you sure?',

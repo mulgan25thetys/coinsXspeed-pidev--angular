@@ -11,6 +11,7 @@ export class Payment{
 	  paid_amount?:any ;
 	  dateLimit?:any ;
 	  creation_date?:any ;
+	  paid_at?:any;
 	  account?:Account;
 	  financialService?:FinancialService ;
 	  checked?:boolean; 

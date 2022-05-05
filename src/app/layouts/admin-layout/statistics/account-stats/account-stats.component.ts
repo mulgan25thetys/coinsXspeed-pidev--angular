@@ -48,7 +48,6 @@ export class AccountStatsComponent implements OnInit {
             { label: 'Savings', data: [this.nbr_sav_app, this.nbr_sav_unap, this.nbr_sav_ope, this.nbr_sav_clos, this.nbr_sav_lock] },
           ],
         };
-        console.log(this.accountsData.datasets);
         this.chartOptions = {
           responsive: true,
           plugins: {

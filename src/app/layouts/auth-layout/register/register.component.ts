@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user/user.service';
 
@@ -16,7 +17,7 @@ export class RegisterComponent implements OnInit {
   class : string ="alert-info";
   messageAlert:string="";
   user = new User();
-  constructor(private service:UserService,private router:Router) { }
+  constructor(private service:UserService,private router:Router,private toatrs:ToastrService) { }
 
   ngOnInit(): void {
     this.user.account = {"id_account" : null,
@@ -53,8 +54,11 @@ export class RegisterComponent implements OnInit {
     this.service.registerUser(this.user).subscribe(
       () => {
         window.scrollTo(0,0);
+        this.toatrs.info('Registration','You recieve an email!');
+        
         form.reset();
-        window.location.href = "/auth/login";
+        setTimeout(function() {window.location.href = "/auth/login";}, 2500);
+        
       },
       () => {
         window.scrollTo(0,0);

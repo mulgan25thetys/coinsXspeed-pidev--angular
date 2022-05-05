@@ -1,15 +1,19 @@
 <div class="card">
     <div class="card-header">
-        Forum name
+        {{forum.activityType}}  |  {{forum.title}}
     </div>
     <div class="card-body">
         <blockquote class="blockquote mb-0">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+            <p>{{forum.content}}</p>
             <footer class="blockquote-footer">
-                <span class="badge badge-light mr-2">Likes 15</span>
-                <span class="badge badge-light mr-2">UnLikes 0</span>
+                
+                <span class="badge badge-light mr-2">Likes {{forum.nbr_like}}</span>
+                <span class="badge badge-light mr-2">UnLikes {{forum.nbr_views}}</span>
+
                 <span class="badge badge-light mr-2">Comments 120</span>
                 <div class="border-top user-social-box mt-3">
+                    <button (click)="sendLike(forum)"  ng-dbclick="forum.nbr_like--"class = "btn btn-info" style="margin-left: 10px">like</button>
+                    <button (click)="sendDislike(forum)" class = "btn btn-info" style="margin-left: 10px">Dislike</button>
                     <div class="user-social-media d-xl-inline-block"><span class="ml-2 mr-2 instagram-color"> <i class="fab fa-instagram"></i></span><span>12,300</span></div>
                     <div class="user-social-media d-xl-inline-block"><span class="ml-2 mr-2  facebook-color"> <i class="fab fa-facebook-square "></i></span><span>92,920</span></div>
                 </div>

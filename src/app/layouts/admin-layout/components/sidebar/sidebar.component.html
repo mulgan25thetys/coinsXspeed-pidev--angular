@@ -21,18 +21,16 @@
                         <a class="nav-link" [ngClass]="activeMenu('blog',2)" routerLink="/admin/blog" ><i class="fa fa-fw fa-bookmark"></i>Blog</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" [ngClass]="activeMenu('forum',2)" routerLink="/admin/forum" ><i class="fa fa-fw fa-comment"></i>Forum</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" [ngClass]="activeMenu('management',2)" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fas fa-fw fa-file"></i> Management </a>
                         <div id="submenu-1" class="collapse submenu" >
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" [ngClass]="activeMenu('account',3)" routerLink="/admin/management/account">Accounts</a>
-                                </li>
-                                <li class="nav-item">
                                     <a class="nav-link" [ngClass]="activeMenu('users',3)" routerLink="/admin/management/users">Users</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" [ngClass]="activeMenu('account',3)" routerLink="/admin/management/account">Accounts</a>
+                                </li>
+                                
                                 <li class="nav-item">
                                     <a class="nav-link" [ngClass]="activeMenu('financial-service',3)" routerLink="/admin/management/financial-service">Financial services</a>
                                 </li>

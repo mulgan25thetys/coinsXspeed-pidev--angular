@@ -21,5 +21,13 @@ export class NoFinancialServicesService {
   getAllNoFinancialServices():Observable<NoFinancialService[]> {
     return this.http.get<NoFinancialService[]>(this.apiUrl+"list-all");
   }
+  addNoFinancialServices(nofinac:NoFinancialService):Observable<NoFinancialService>{
+    return this.http.post<NoFinancialService>(this.apiUrl+"add-fin",nofinac);
+  }
+  getNoFinancialByUser(id:number):Observable<NoFinancialService>{
+    return this.http.get<NoFinancialService>(this.apiUrl+"retrieve-financialserviceByUser"+"/"+id,this.httpOptions);
+  }
+  updateNoFinancialServices(nofinac:NoFinancialService):Observable<NoFinancialService>{
+    return this.http.post<NoFinancialService>(this.apiUrl+"update-fin",nofinac);
 }
- 
+}

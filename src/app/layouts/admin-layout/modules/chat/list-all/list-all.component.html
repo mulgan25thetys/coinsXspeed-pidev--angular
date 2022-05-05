@@ -9,7 +9,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="d-inline-block">
-                    <h5 class="text-muted">Total Forum</h5>
+                    <h5 class="text-muted">Total Posts</h5>
                     <h2 class="mb-0">{{  list_forums.length }}</h2>
                 </div>
                 <div class="float-right icon-circle-medium  icon-box-lg  bg-primary-light mt-1">
@@ -20,12 +20,12 @@
     </div>
 </div>
 <div class="card">
-    <h5 class="card-header"><span style="margin-right: 30px;">Forum Table</span>
+    <h5 class="card-header"><span style="margin-right: 30px;">Posts Table</span>
         
     </h5>
     <div class="card-body border-top" role="toolbar" aria-label="Toolbar with button groups">
         <div class="btn-group mr-2" role="group" aria-label="First group">
-            <a   [routerLink]="['/admin/forum/add']" class="btn btn-success btn-sm"><i class="fas fa-plus"></i> Add</a>
+            <a   [routerLink]="['/admin/blog/add']" class="btn btn-success btn-sm"><i class="fas fa-plus"></i> Add</a>
           </div>
           <div id="custom-search" class="mt-3">
             <input class="form-control" [(ngModel)]="search" name="search" type="text" placeholder="Search..">

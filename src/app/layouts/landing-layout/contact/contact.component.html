@@ -1,18 +1,18 @@
 <div class="card" >
-    <h2 class="card-header text-center"> Contact Us</h2>
+    <h2 class="card-header text-center"> notification Us</h2>
     <div class="card-body">
-        <form #formContact="ngForm" novalidate id="basicform" >
+        <form #form="ngForm" novalidate id="basicform" > 
             <div class="form-group row">
                 <label class="col-12 col-sm-3 col-form-label text-sm-right">Firstname & Lastname</label>
                 
                 <div class="col-sm-4 col-lg-4 mb-3 mb-sm-0">
-                    <input id="firstname" name="firstname" [class.is-invalid]="firstname.invalid && firstname.touched" [(ngModel)]="contact.firstname" #firstname="ngModel" type="text" required="" placeholder="Firstname ..." class="form-control">
+                    <input id="firstname" name="firstname" [class.is-invalid]="firstname.invalid && firstname.touched" [(ngModel)]="notification.firstname" #firstname="ngModel" type="text" required="" placeholder="Firstname ..." class="form-control">
                     <div *ngIf="firstname.errors && (firstname.valid || firstname.touched)">
                         <p class="text-danger" *ngIf="firstname.errors?.required">Firstname is required</p>
                     </div>
                 </div>
                 <div class="col-sm-4 col-lg-4">
-                    <input type="text"  required name="lastname" [class.is-invalid]="lastname.invalid && lastname.touched" [(ngModel)]="contact.lastname" #lastname="ngModel" placeholder="Lastname ..." class="form-control">
+                    <input type="text"  required name="lastname" [class.is-invalid]="lastname.invalid && lastname.touched" [(ngModel)]="notification.lastname" #lastname="ngModel" placeholder="Lastname ..." class="form-control">
                     <div *ngIf="lastname.errors && (lastname.valid || lastname.touched)">
                         <p class="text-danger" *ngIf="lastname.errors?.required">Lastname is required</p>
                     </div>
@@ -21,7 +21,7 @@
             </div>
             <div class="form-group">
                 <label for="inputEmail">Email address</label>
-                <input id="inputEmail" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="contact.email" [class.is-invalid]="email.invalid && email.touched" #email="ngModel"  type="text" name="email" required placeholder="Enter email..." class="form-control">
+                <input id="inputEmail" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="notification.email" [class.is-invalid]="email.invalid && email.touched" #email="ngModel"  type="text" name="email" required placeholder="Enter email..." class="form-control">
                 <div *ngIf="email.errors && (email.valid || email.touched)">
                     <p class="text-danger" *ngIf="email.errors?.required">Email is required</p>
                     <p class="text-danger" *ngIf="email.errors?.pattern">Email is invalid</p>
@@ -29,13 +29,13 @@
             </div>
             <div class="form-group">
                 <label for="inputEmail">Message</label>
-                <textarea class="form-control" [(ngModel)]="contact.message" [class.is-invalid]="message.invalid && message.touched" #message="ngModel" required></textarea>
+                <textarea class="form-control" [(ngModel)]="notification.message" [class.is-invalid]="message.invalid && message.touched" #message="ngModel" required></textarea>
                 <div *ngIf="message.errors && (message.valid || message.touched)">
                     <p class="text-danger" *ngIf="message.errors?.required">Message is required</p>
                 </div>
             </div>
             <p class="text-right">
-                <button type="button" [disabled]="formContact.invalid" (click)="onSumitContact(formContact)" class="btn btn-space btn-primary">Submit</button>
+                <button type="button" [disabled]="form.invalid" (click)="onSumitContact(form)" class="btn btn-space btn-primary">Submit</button>
             </p>
         </form>
     </div>

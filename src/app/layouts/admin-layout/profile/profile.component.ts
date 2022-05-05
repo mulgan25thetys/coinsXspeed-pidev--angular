@@ -40,7 +40,6 @@ export class ProfileComponent implements OnInit {
     this.claims = this.user.claim;
     this.communications = this.user.communications;
     this.account = this.user.account;
-    console.log(this.user);
   }
 
 }

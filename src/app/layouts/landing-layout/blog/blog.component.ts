@@ -11,7 +11,7 @@ export class BlogComponent implements OnInit {
   sideTitle:string="No financial services";
   page: number = 1;
   count: number = 0;
-  tableSize: number = 3;
+  tableSize: number = 2;
   tableSizes: any = [3, 6, 9, 12];
 
   list_no_financial_services :NoFinancialService[] = [];

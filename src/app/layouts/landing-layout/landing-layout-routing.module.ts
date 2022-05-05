@@ -7,8 +7,7 @@ import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'blog', component: BlogComponent },
-  { path: 'forum', component: ForumComponent },
+  { path: 'blog', component: ForumComponent },
   { path: 'financial-service/:product',component:HomeComponent},
   { path: 'client-space',canActivate: [AuthGuardGuard], data: { roles: ['CLIENT','ADMIN','AGENT'] }, loadChildren: () => import('./client-space/client-space.module').then(m => m.ClientSpaceModule) }
 ];

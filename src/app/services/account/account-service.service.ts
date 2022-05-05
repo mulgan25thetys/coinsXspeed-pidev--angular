@@ -60,4 +60,14 @@ export class AccountServiceService {
   lockAccount(id:number,status:any):any{
     return this.http.put<String>(this.apiUrl+"change-account-status/"+id+"/"+status,null);
   }
+
+  exportToPdfFile():Observable<any>{
+    var authorization = 'Bearer '+sessionStorage.getItem("access_token");
+
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json',
+    "Authorization": authorization, responseType : 'blob'});
+
+    return this.http.get(this.apiUrl+"export-pdf", { headers : headers,responseType : 
+      'blob' as 'json'})
+  }
 }

@@ -14,45 +14,76 @@
         <!-- {{form.value | json}} -->
         
         <div class="form-group row">
-          <label class="col-12 col-sm-3 col-form-label text-sm-right" for="title">Title</label>
+          <label class="col-12 col-sm-3 col-form-label text-sm-right" for="title">Type</label>
           <div class="col-12 col-sm-8 col-lg-6">
-            <input
+            <select class="form-control" [class.is-invalid]="type.invalid && type.touched" name="type" #type="ngModel" required [(ngModel)]="notification.type">
+              <option value="REMINDER">REMINDER</option>
+              <option value="CONFIRMATION">CONFIRMATION</option>
+              <option value="CONTACT">CONTACT</option>
+              </select>
+              <div *ngIf="type.errors && (type.valid || type.touched)">
+                <p class="text-danger" *ngIf="type.errors.required">Please select type!</p>
+              </div>
+          </div>
+          
+        </div>
+        <div class="form-group row">
+          <label class="col-12 col-sm-3 col-form-label text-sm-right" for="select">Client</label>
+          <div class="col-12 col-sm-8 col-lg-6">
+            <select 
+            class="form-control #select form-control-md"
+            name="idUser"
+            (blur)="validateTopic(userName.value)"
+            (change)="validateTopic(userName.value)"
+            #userName="ngModel"
+            [(ngModel)]="notification.user.userId"
+            required
+            [class.is-invalid]="hasError && userName.touched"
+          >
+            <option value="default">Select Client</option>
+            <option *ngFor="let client of listClients" [value]="client.userId">
+              {{ client.userName }} | {{ client.email }}
+            </option>
+          </select>
+          </div>
+          
+        </div>
+        <div class="form-group row">
+          <label class="col-12 col-sm-3 col-form-label text-sm-right" for="title">Object</label>
+          <div class="col-12 col-sm-8 col-lg-6">
+            <input class="form-control" [class.is-invalid]="object.invalid && object.touched"
             class="form-control"
-            name="title"
-            placeholder="Title..."
-            #rtitle
+            name="object"
+            placeholder="Object..."
+            #object="ngModel"
+            [(ngModel)]="notification.object" 
             required
             />
-          <!-- <p class="text-danger" [class.d-none]="title.valid || title.untouched">Title is required</p> -->
-          <div *ngIf="false">
-            <p class="text-danger" *ngIf="false">
-              Title is required</p
-            >
-          </div>
+            <div *ngIf="object.errors && (object.valid || object.touched)">
+              <p class="text-danger" *ngIf="object.errors.required">Please type object!</p>
+            </div>
         </div>
         </div>
         <div class="form-group row">
-            <label class="col-12 col-sm-3 col-form-label text-sm-right" for="content">Content</label>
+            <label class="col-12 col-sm-3 col-form-label text-sm-right" for="content">Message</label>
             <div class="col-12 col-sm-8 col-lg-6">
-              <input
+              <textarea class="form-control" [class.is-invalid]="content.invalid && content.touched"
               class="form-control"
               name="content"
               placeholder="Content..."
-              #rtitle
+              #content="ngModel"
+              [(ngModel)]="notification.message"
               required
-              />
-            <!-- <p class="text-danger" [class.d-none]="title.valid || title.untouched">Title is required</p> -->
-            <div *ngIf="false">
-              <p class="text-danger" *ngIf="false">
-                Content is required</p
-              >
-            </div>
+              ></textarea>
+              <div *ngIf="content.errors && (content.valid || content.touched)">
+                <p class="text-danger" *ngIf="content.errors.required">Please type message!</p>
+              </div>
           </div>
           </div>
         <button
           [disabled]="form.form.invalid"
           type="button"
-          class="btn btn-primary btn-sm"
+          class="btn btn-primary btn-sm" (click)="onaddNotification(form)"
         >
           Save changes
         </button>

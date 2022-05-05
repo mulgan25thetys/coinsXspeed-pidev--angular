@@ -7,7 +7,8 @@ import { ListAllComponent } from './list-all/list-all.component';
 const routes: Routes = [
   {path:'',redirectTo:'list-all'},
   {path:'list-all',component:ListAllComponent},
-  { path: 'add', component: AddComponent }
+  { path: 'add', component: AddComponent },
+  { path: 'user/:id/show', component: ListAllComponent }
 ];
 
 @NgModule({

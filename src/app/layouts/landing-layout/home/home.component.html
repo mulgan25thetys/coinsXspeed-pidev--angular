@@ -53,10 +53,10 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card-columns">
 
-                            <app-post class="card" *ngFor="let post of list_no_financial_services |  slice:0:3;" [no_financialservice]="post"></app-post>      
+                            <app-forum-c  *ngFor="let post of list_forums |  slice:0:3;" [forum]="post"></app-forum-c>      
 
                         </div>
-                     
+                      
                         <div class=" col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center">
                             <a class="btn btn-primary"[routerLink]="['/blog']">Show More</a>
                         </div>

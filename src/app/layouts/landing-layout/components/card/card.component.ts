@@ -27,8 +27,10 @@ export class CardComponent implements OnInit {
       // alert("Ok let's go!")
        if (this.current_user.currentUserValue.account?.isApproved == true) {
          if (category == "Loan") {
+           window.scrollTo(0,0);
           this.financialsercice_serve.AddFinancialServiceLoan(id_fs,this.current_user.currentUserValue.userId).subscribe(
             res => {
+
               this.router.navigate(['client-space/financial-services']);
             },
             error =>{

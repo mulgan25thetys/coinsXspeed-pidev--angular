@@ -63,7 +63,11 @@
                             </label></th>
                         <td>{{ claim.type }}</td>
                         <td>{{ claim.message }}</td>
-                        <td>{{ claim.answerStatus }} DT</td>
+                        <ng-container [ngSwitch]="claim.answerStatus">
+                            <td *ngSwitchCase="'ANSWERED'"><span class="badge badge-success">ANSWERED</span></td>
+                            <td *ngSwitchCase="'WAITING'"><span class="badge badge-info">WAITING</span></td>
+                            <td *ngSwitchCase="'REJECT'"><span class="badge badge-danger">REJECT</span></td>
+                        </ng-container>
                         <td>{{ claim.claimantId }}</td>
                         <td>{{ claim.topic }}</td>
                         <td>{{ claim.created_at }}</td>
@@ -76,7 +80,7 @@
                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <!-- item-->
-                                    <a [routerLink]="[baseLink+'edit',claim.idClaim]" class="dropdown-item"><i class="fas fa-edit"></i> Edit</a>
+                                    <a [routerLink]="[]" (click)="onAnswereClaim(claim.idClaim)" class="dropdown-item"><i class="fas fa-edit"></i> Answer</a>
                                     <!-- item-->
                                     <a href="javascript:void(0);" class="dropdown-item"><i class="fas fa-trash"></i> Delete</a>
                                 </div>

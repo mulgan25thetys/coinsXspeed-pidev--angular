@@ -24,15 +24,16 @@ export class HomeComponent implements OnInit {
   contact = new Contact();
 
   list_financial_services :FinancialService[] = [];
-  list_no_financial_services :NoFinancialService[] =[];
+  list_forums :NoFinancialService[] =[];
 
   constructor(private _service_fs:AccountServiceService,
-    private _noservice_fs:NoFinancialServicesService) { }
+    private _noservice_fs:NoFinancialServicesService,private service:NoFinancialServicesService) { }
   
   ngOnInit(): void {
     window.scrollTo(0, 0);
     
     this.getAllFinancialServices();
+    this.getAllNoFinancialServices();
   }
 
   getAllFinancialServices(){
@@ -43,7 +44,13 @@ export class HomeComponent implements OnInit {
   }
 
   getAllNoFinancialServices(){
-  
+    this.service.getAllNoFinancialServices().subscribe(
+      res => {
+        this.list_forums = res;
+      },error =>{
+        console.log(error);
+      }
+    )
   }
 
   show_specific_fs(value:any){

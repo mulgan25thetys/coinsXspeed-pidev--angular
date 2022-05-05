@@ -1,0 +1,73 @@
+<div class="modal fade" id="transactionModal" tabindex="-1" role="dialog" aria-labelledby="transactionModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="transactionModaLabel">Add Transaction</h5>
+                <a href="#" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></a>
+            </div>
+            <div class="modal-body">
+              <form #form="ngForm" novalidate>
+               <!-- {{ form.value | json }} -->
+                <div class="form-group">
+                  <label class="col-form-label" for="type">Type</label>
+                  <select 
+                    class="form-control #select form-control-md"
+                    name="type"
+                    [(ngModel)]="transaction.type"
+                    #type="ngModel"
+                    required
+                    [class.is-invalid]="type.invalid && type.touched"
+                  >
+                    <option value="RETRICIVE">RETRICIVE</option>
+                    <option value="DEPOSITE">DEPOSITE</option>
+                  </select>
+                  <div *ngIf="type.errors && (type.valid || type.touched)">
+                    <p class="text-danger" *ngIf="type.errors?.required">Please select type!</p>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-form-label" for="select">Account Creditor</label>
+                  <input class="form-control" type="number" name="acc_cred" 
+                  [(ngModel)]="transaction.creditAcc"
+                    #acc_cred="ngModel"
+                    
+                    [class.is-invalid]="acc_cred.invalid && acc_cred.touched"
+                  >
+                </div>
+                <div class="form-group">
+                    <label class="col-form-label" for="select">Account Debtor</label>
+                    <input class="form-control" type="number" name="acc_deb" 
+                    [(ngModel)]="transaction.debtorAcc"
+                      #acc_deb="ngModel"
+                      
+                      [class.is-invalid]="acc_deb.invalid && acc_deb.touched"
+                    >
+                  </div>
+                  <div class="form-group">
+                    <label class="col-form-label" for="amount">Amount</label>
+                    <input class="form-control" type="number" name="amount" 
+                    [(ngModel)]="transaction.amont"
+                      #amont="ngModel"
+                      required
+                      [class.is-invalid]="amont.invalid && amont.touched"
+                    >
+                    <div *ngIf="amont.errors && (amont.valid || amont.touched)">
+                        <p class="text-danger" *ngIf="amont.errors?.required">Please indicate the amount!</p>
+                      </div>
+                  </div>
+                <div class="form-group text-right">
+                    <button
+                      type="button"
+                      [disabled]="form.invalid "
+                      (click)="onAddTransaction(form)"
+                      class="btn btn-primary"
+                    >
+                      Save changes
+                    </button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -4,7 +4,7 @@ import { User } from "./user";
 export class NoFinancialService {
 
         id?:any;
-	   category?:any;
+	   category?:any; 
 	    title?:any;
 	  
 	    activityType?:any;
