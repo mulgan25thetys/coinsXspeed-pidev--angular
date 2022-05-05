@@ -82,4 +82,23 @@ export class ListAllComponent implements OnInit {
 		return this.listPayments.every(acc => acc.checked);
 	}
 
+  exportPdf(){
+    this.payService.exportToPdfFile().subscribe(
+      res => {
+        
+        var file = new Blob([res], { type: 'application/pdf' })
+        var fileURL = URL.createObjectURL(file);
+        var a         = document.createElement('a');
+        a.href        = fileURL; 
+        a.target      = '_blank';
+        a.download    = 'payment.pdf';
+        document.body.appendChild(a);
+        a.click();  
+            },
+      error => {
+        this.toastr.error("An error has been occured!",error);
+      }
+    )
+
+  }
 }

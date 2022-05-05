@@ -1,1 +1,134 @@
-<p>claim works!</p>
+<div class="row">
+    <div class="col-xl-10">
+        <!-- ============================================================== -->
+        <!-- pageheader -->
+        <!-- ============================================================== -->
+        <app-header></app-header>
+        <!-- ============================================================== -->
+        <!-- end pageheader -->
+        <!-- ============================================================== -->
+        <div *ngIf="messages !== '' " class="alert alert-dismissible fade show" [ngClass]="class" role="alert">
+            {{ messages }}.
+            <a href="#" class="close" data-dismiss="alert" aria-label="Close">
+               <span aria-hidden="true">&times;</span> </a>
+        </div>
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="section-block">
+                    <h5 class="section-title">My Claims</h5>
+                    <!-- <p>Takes the basic nav from above and adds the .nav-tabs class to generate a tabbed interface..</p> -->
+                </div>
+                <div class="tab-regular">
+                    <ul class="nav nav-tabs" id="myTab7" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="claim-vertical-tab" data-toggle="tab" href="#claim-vertical" role="tab" aria-controls="claim" aria-selected="true">My claim</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="-vertical-tab" data-toggle="tab" href="#claimform-vertical" role="tab" aria-controls="claimform" aria-selected="false">New claim</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent3">
+                        <div class="tab-pane fade show active" id="claim-vertical" role="tabpanel" aria-labelledby="claim-vertical-tab">
+                            
+                            <div class="card">
+                                <h5 class="card-header">claim</h5>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead class="bg-light">
+                                                <th>Type</th>
+                                                <th>Message</th>
+                                                <th>Status</th>
+                                                <th>Created at</th>
+                                                <th>Topic</th>
+                                                <th>Action</th>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let claim of listClaims,let i=index">
+                                                    <td>{{claim?.type}}</td>
+                                                    <td>{{claim?.message}}</td>
+                                                    <td>{{claim?.answerStatus}}</td>
+                                                    <td>{{claim?.created_at}}</td>
+                                                    <td>{{claim?.topic}}</td>
+                                                    <td>
+                                                        <div class="dropdown float-right">
+                                                            <a href="#" class="dropdown-toggle  card-drop" data-toggle="dropdown" aria-expanded="true">
+                                                <i class="mdi mdi-dots-vertical"></i>
+                                            </a>
+                                                            <div class="dropdown-menu dropdown-menu-right">
+                                                    
+                                                            <a [routerLink]="[]" (click)="onDeleteClaim(claim?.idClaim)" class="dropdown-item"><i class="fas fa-trash"></i> Delete</a>
+                                                            
+                                                            <a [routerLink]="[]" (click)="onEditClaim(claim?.idClaim)" class="dropdown-item"><i class="fas fa-edit"></i> Edit</a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div> 
+                                <!-- ============================================================== -->
+                                <!-- end flush list -->
+                                <!-- ============================================================== -->
+                                
+                            </div>
+                    
+                        </div>
+                        <div class="tab-pane fade " id="claimform-vertical" role="tabpanel" aria-labelledby="claimform-vertical-tab">
+
+                            <form #SendRequest="ngForm" novalidate >
+                                <!-- {{SendRequest.value | json}} -->
+                                <h3> Add new claim</h3>
+                                <div class="form-group">
+                                    <label class="col-form-label" for="type">Topic</label>
+                                    <select class="form-control" [class.is-invalid]="topic.touched && topic.invalid" name="topic" #topic="ngModel" [(ngModel)]="claim.topic" required>
+                                        <option value="Security">Security</option>
+                                        <option value="Service">Service</option>
+                                        <option value="Quality">Quality</option>
+                                    </select>
+                                    <div *ngIf="topic.errors && (topic.touched || topic.valid)">
+                                        <p class="text-danger" *ngIf="topic.errors?.required">Topic is required</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-form-label" for="type">Type</label>
+                                    <select class="form-control" [class.is-invalid]="type.touched && type.invalid" name="type" #type="ngModel" [(ngModel)]="claim.type" required>
+                                        <option value="OPINION">Opinion</option>
+                                        <option value="COMPLAINT">Complaint</option>
+                                    </select>
+                                    <div *ngIf="type.errors && (type.touched || type.valid)">
+                                        <p class="text-danger" *ngIf="type.errors?.required">Type is required</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-form-label" for="type">Message</label>  
+                                    <textarea class="form-control" [class.is-invalid]="message.touched && message.invalid" name="message" cols="30" rows="10" [(ngModel)]="claim.message"
+                                    #message="ngModel" required
+                                    ></textarea>
+                                    <div *ngIf="message.errors && (message.touched || message.valid)">
+                                        <p class="text-danger" *ngIf="message.errors?.required">Message is required</p>
+                                    </div>
+                                </div>                                                                                                                                                                                                                                                                                         
+                                <button [disabled]="SendRequest.invalid" (click)="completeForm(SendRequest)" class="btn btn-success">Validate</button>
+                            </form> 
+                            <!-- <div *ngIf="!show_form" class="alert alert-info">
+                                No claimform form!
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- sidebar nav  -->
+    <!-- ============================================================== -->
+    <div class="col-xl-2 col-lg-2 col-md-6 col-sm-12 col-12">
+        <app-menu></app-menu>
+    </div>
+    <!-- ============================================================== -->
+    <!-- end sidebar nav  -->
+    <!-- ============================================================== -->
+</div>
+

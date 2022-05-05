@@ -8,7 +8,8 @@ const routes: Routes = [
   { path: '', redirectTo:'list-all' },
   { path: 'list-all' ,component:ListAllComponent},
   { path: 'add',component:AddComponent},
-  { path: 'edit-form/:id',component:EditComponent}
+  { path: 'edit-form/:id',component:EditComponent},
+  { path: 'user/:id/show' ,component:ListAllComponent},
 ];
 
 @NgModule({

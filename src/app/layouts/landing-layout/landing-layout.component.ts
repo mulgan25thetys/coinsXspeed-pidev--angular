@@ -10,7 +10,7 @@ export class LandingLayoutComponent implements OnInit {
   hasSideBar : boolean = false;
 
   homeLink : string = "home";
-  notificationLandingLink : string ="client-space/notification";
+  notificationLandingLink : string ="client-space/notifications";
   profileLandingLink:string="client-space/my-profile";
   redirectingLandingLink = "home";
   constructor() { }

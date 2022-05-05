@@ -50,6 +50,13 @@ export class FakeBackendInterceptor implements HttpInterceptor {
               account:user.account,
               phone:user.phone,
               role: user.role, 
+              address:user.address,
+              age:user.age,
+              salary:user.salary,
+              city:user.city,
+              country:user.country,
+              level:user.level,
+              situation:user.situation,
               notifications:user.notifications,
               claim:user.claim,
               communications:user.communications

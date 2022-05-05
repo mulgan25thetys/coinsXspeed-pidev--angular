@@ -16,6 +16,8 @@ import { LandingMenuComponent } from './components/landing-menu/landing-menu.com
 import { AlertComponent } from './modules/components/alert/alert.component';
 import { AccountStatsComponent } from './statistics/account-stats/account-stats.component';
 import { NgChartsModule } from 'ng2-charts';
+import { TransactionStatsComponent } from './statistics/transaction-stats/transaction-stats.component';
+import { ReclamationStatComponent } from './statistics/reclamation-stat/reclamation-stat.component';
 
 
 
@@ -34,6 +36,8 @@ import { NgChartsModule } from 'ng2-charts';
     LandingMenuComponent,
     AlertComponent,
     AccountStatsComponent,
+    TransactionStatsComponent,
+    ReclamationStatComponent
   ],
   imports: [
     CommonModule,

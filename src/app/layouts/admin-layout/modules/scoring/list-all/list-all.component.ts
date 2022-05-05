@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ScoreForm } from 'src/app/models/score-form';
 import { ScoringsServiceService } from 'src/app/services/scorings/scorings-service.service';
 import swal from 'sweetalert2'; 
@@ -13,7 +13,7 @@ import { ScoreResponse } from 'src/app/models/score-response';
 })
 export class ListAllComponent implements OnInit {
 
-  pageTitle:string = "Form Scoring > List All";
+  pageTitle:string = "Management > Scoring ";
   baseLink:string="/admin/management/scoring/";
   is_deleted:boolean=true;
 
@@ -31,23 +31,43 @@ export class ListAllComponent implements OnInit {
   total_answered :any;
   total_not_answered :any;
 
+  iduser:number;
   addFormLink :string = "admin/management/scoring/add";
   constructor(private _serviceform:ScoringsServiceService,
-    private router:Router,private toastr:ToastrService) { }
+    private router:Router,private toastr:ToastrService,private activedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.iduser = this.activedRoute.snapshot.params.id;
     window.scrollTo(0, 0);
     this.onActualize();
-  }
+    this.getAllScoreForm(this.iduser);
+  } 
 
-  getAllScoreForm() {
-    this._serviceform.getAllScoreForms().subscribe(
-      res =>{
-        this.listforms = res;
-        this.getAllResponses(this.listforms);
-      },
-      error =>{  console.log(error);  }
-    )
+  getAllScoreForm(iduser:number) {
+    if (iduser) {
+      this._serviceform.getScoreFormByUser(iduser).subscribe(
+        res => {
+          if (res != null) {
+            this.listforms = [];
+           this.listforms.push(res);
+           this.getAllResponses(this.listforms);
+          } else {
+            this.toastr.info("There is no form for this user","Show form")
+          }
+        },
+        error => {
+          this.toastr.error(error,"An error has been occured!");
+        }
+      )
+    } else {
+      this._serviceform.getAllScoreForms().subscribe(
+        res =>{
+            this.listforms = res; 
+          this.getAllResponses(this.listforms);
+        },
+        error =>{  console.log(error);  }
+      )
+    }
   }
 
   getAllResponses(list:ScoreForm[]){  
@@ -63,7 +83,7 @@ export class ListAllComponent implements OnInit {
   }
 
   onActualize(){
-    this.getAllScoreForm();
+    this.getAllScoreForm(this.iduser);
   }
 
   onDeleteScoreForm(id:any){
@@ -104,12 +124,12 @@ export class ListAllComponent implements OnInit {
 
   onTableDataChange(event: any) {
     this.page = event;
-    this.getAllScoreForm();
+    this.getAllScoreForm(this.iduser);
   }
   onTableSizeChange(event: any): void {
     this.tableSize = event.target.value;
     this.page = 1;
-    this.getAllScoreForm();
+    this.getAllScoreForm(this.iduser);
   }
   //checkAllCheckBox(ev) { // Angular 9
   checkAllCheckBox(ev: any) { // Angular 13

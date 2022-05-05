@@ -18,6 +18,10 @@ export class PaymentService {
   
   constructor(private http:HttpClient) { }
 
+  proceedToPayment(pay:Payment):Observable<Payment[]>{
+    return this.http.put<Payment[]>(this.apiUrl+"proceed-payement-financial-service",pay);
+  }
+
   getAllPaymentForAccount(id_acc:number):Observable<Payment[]>{
     return this.http.get<Payment[]>(this.apiUrl+"get-payement-account/"+id_acc);
   }
@@ -32,5 +36,15 @@ export class PaymentService {
 
   getAllPayments():Observable<Payment[]>{
     return this.http.get<Payment[]>(this.apiUrl+"list-payement");
+  }
+
+  exportToPdfFile():Observable<any>{
+    var authorization = 'Bearer '+sessionStorage.getItem("access_token");
+
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json',
+    "Authorization": authorization, responseType : 'blob'});
+
+    return this.http.get(this.apiUrl+"export-pdf", { headers : headers,responseType : 
+      'blob' as 'json'})
   }
 }

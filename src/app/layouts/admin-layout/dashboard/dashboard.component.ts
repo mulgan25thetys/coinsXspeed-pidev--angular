@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AccountServiceService } from 'src/app/services/account/account-service.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { FinancialServiceService } from 'src/app/services/financialServices/financial-service.service';
+import { RevenusService } from 'src/app/services/revenus/revenus.service';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
@@ -18,10 +19,12 @@ export class DashboardComponent implements OnInit {
   total_financial_services_available :number;
   total_clients:number;
 
+  revenus:number;
   constructor(private auth:AuthenticationService,
      private _service_account:AccountServiceService,
      private _service_f_service:FinancialServiceService,
      private _service_user:UserService,
+     private _service_revenus:RevenusService,
      private toarts:ToastrService) { }
 
   ngOnInit(): void {
@@ -30,8 +33,17 @@ export class DashboardComponent implements OnInit {
     this.getTotalApp_account();
     this.getTotalFinancial_services();
     this.getAllClients();
+    this.getRevenus();
   }
 
+  getRevenus(){
+    this._service_revenus.getRevenus().subscribe(
+      res => {
+        this.revenus = res.filter(r => r.amount).reduce((sum,current)=> sum+current.amount,0); 
+      },
+      error => {this.toarts.error(error,"Internal server error!")}
+    )
+  }
   getTotalApp_account(){
     this._service_account.getAllAccounts().subscribe(
       res => {

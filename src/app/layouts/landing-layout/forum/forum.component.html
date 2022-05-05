@@ -6,19 +6,23 @@
             <div class="col-xl-9 col-lg-8 col-md-8 col-sm-12 col-12">
 
                 <div class="row mt-5"><div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <h2 class="text-center mb-3"> Forum</h2>
+                    <h2 class="text-center mb-3"> Blog</h2>
                 </div></div>
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 
                   
-                            <app-forum-c ></app-forum-c>
-                            <app-forum-c ></app-forum-c>
+                        <app-forum-c *ngFor="let forum of list_forums | paginate
+                        : {
+                            itemsPerPage: tableSize,
+                            currentPage: page,
+                            totalItems: count
+                            };" [forum]="forum"></app-forum-c>
                             
                         <div class=" col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 text-center">
                             
                             <div class="d-flex justify-content-center">
-                                <pagination-controls
+                                <pagination-controls 
                                   previousLabel="Prev"
                                   nextLabel="Next"
                                   (pageChange)="onTableDataChange($event)"

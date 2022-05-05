@@ -11,7 +11,7 @@ import { NoFinancialService } from 'src/app/models/noFinancialService';
 export class ListAllComponent implements OnInit {
 
   pageTitle : string ="Forum";
-  baseLink : string ="/admin/forum/";
+  baseLink : string ="/admin/blog/";
 
   search:string="";
 

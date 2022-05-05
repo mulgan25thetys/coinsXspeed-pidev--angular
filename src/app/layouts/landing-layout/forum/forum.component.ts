@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NoFinancialService } from 'src/app/models/noFinancialService';
+import { NoFinancialServicesService } from 'src/app/services/nofinancialServices/no-financial-services.service';
 
 @Component({
   selector: 'app-forum',
@@ -13,16 +15,23 @@ export class ForumComponent implements OnInit {
   tableSize: number = 3;
   tableSizes: any = [3, 6, 9, 12];
 
-  list_forums :[] = [];
-  constructor() { }
+  list_forums :NoFinancialService[] = [];
+  constructor(private service:NoFinancialServicesService) { }
 
   ngOnInit(): void {
-    window.scrollTo(0,0);
-    this.getAllForum();
+     window.scrollTo(0,0);
+    this.getAllForum(); 
   }
 
   getAllForum(){
-  
+    this.service.getAllNoFinancialServices().subscribe(
+      res => {
+        this.list_forums = res;
+        console.log(this.list_forums);
+      },error =>{
+        console.log(error);
+      }
+    )
   }
 
   onTableDataChange(event: any) {

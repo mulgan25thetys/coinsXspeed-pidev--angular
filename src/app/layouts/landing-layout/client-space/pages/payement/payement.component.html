@@ -59,13 +59,13 @@
                                                     <td>{{ payment.financialService.category }}</td>
                                                     <td>{{ payment.financialService.amount | number : '1.2' }}</td>
                                                     <td>
-                                                        <button [disabled]="payment.amortization == payment.paid_amount" 
-                                                         class="btn btn-success btn-sm" *ngIf=" payment.amortization == payment.paid_amount">
+                                                        <button disabled 
+                                                         class="btn btn-success btn-sm" *ngIf="payment.paid_at">
                                                             <i class=" fas fa-check"></i> paid
                                                         </button>
-                                                        <button data-toggle="modal" *ngIf="payment.amortization != payment.paid_amount" data-target="#payModal" class="btn btn-primary btn-sm">Start pay</button>
+                                                        <button data-toggle="modal" *ngIf="!payment.paid_at" (click)="payLoan(payment)" class="btn btn-primary btn-sm">Start pay</button>
                                                     </td>
-                                                    <app-pay-modal [payment]="payment" (update_data)="onActualize($event)"></app-pay-modal>
+                                                    <!-- <app-pay-modal [payment]="payment" (update_data)="onActualize($event)"></app-pay-modal> -->
                                                 </tr> 
                                             </tbody>
                                         </table>

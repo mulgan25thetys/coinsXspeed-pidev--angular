@@ -146,4 +146,23 @@ export class ListAllComponent implements OnInit {
   isAllCheckBoxChecked() {
 		return this.listAccounts.every(acc => acc.checked);
 	}
+  exportPdf(){
+    this.acc_service.exportToPdfFile().subscribe(
+      res => {
+        
+        var file = new Blob([res], { type: 'application/pdf' })
+        var fileURL = URL.createObjectURL(file);
+        var a         = document.createElement('a');
+        a.href        = fileURL; 
+        a.target      = '_blank';
+        a.download    = 'accounts.pdf';
+        document.body.appendChild(a);
+        a.click();  
+            },
+      error => {
+        this.toastr.error("An error has been occured!",error);
+      }
+    )
+
+  }
 }
